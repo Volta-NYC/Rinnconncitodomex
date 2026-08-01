@@ -2,11 +2,10 @@
   "name": "rinconcito-domex-site",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
-    "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
-    "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
@@ -19,19 +18,12 @@
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "1.37.1",
     "@types/node": "26.1.2",
     "@types/react": "^19.2.14",
-    "@vitejs/plugin-react": "6.0.2",
-    "@vitejs/plugin-rsc": "0.5.26",
     "autoprefixer": "^10.0.0",
     "postcss": "^8.5.18",
-    "react-server-dom-webpack": "19.2.6",
     "tailwindcss": "^3.0.0",
-    "typescript": "^5.0.0",
-    "vinext": "0.0.50",
-    "vite": "8.0.13",
-    "wrangler": "4.92.0"
+    "typescript": "^5.0.0"
   },
   "overrides": {
     "postcss": "^8.5.18",

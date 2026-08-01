@@ -19,8 +19,6 @@
 
 # production
 /build
-/dist
-/.wrangler
 
 # local source material (not shipped with the website)
 /raw messy data
