@@ -1,7 +1,7 @@
 import vinext from "vinext"
 import { defineConfig } from "vite"
 import hostingConfig from "./.openai/hosting.json"
-import { sites } from "./build/sites-vite-plugin"
+import { sites } from "./hosting/sites-vite-plugin"
 
 const { d1, r2 } = hostingConfig
 const placeholderDatabaseId = "00000000-0000-4000-8000-000000000000"
