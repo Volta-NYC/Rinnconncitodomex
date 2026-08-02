@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -14,8 +13,10 @@ import {
   School,
   Sparkles,
 } from "lucide-react"
+import { MenuSection } from "@/components/menu-section"
 import { Reveal } from "@/components/reveal"
 import { SiteFrame } from "@/components/site-chrome"
+import { DishMarquee, SplitDuo, TileBand } from "@/components/visuals"
 import {
   address,
   globalCopy,
@@ -121,8 +122,12 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
           <Reveal className="hero-visual" delay={0.14}>
             <div className="hero-image-frame">
-              <Image src="/images/fresh-cuisine.jpg" alt="An elegantly prepared catering table" fill priority sizes="(max-width: 900px) 92vw, 48vw" />
-              <div className="image-wash" />
+              <SplitDuo
+                src="/images/fresh-cuisine.jpg"
+                alt="A catering table set for service"
+                priority
+                sizes="(max-width: 900px) 92vw, 48vw"
+              />
             </div>
             <div className="culture-seal" aria-hidden="true">
               <span>DOM</span><i>×</i><span>MEX</span>
@@ -138,17 +143,22 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="intro-section section shell">
-        <Reveal className="intro-number">RD / 01</Reveal>
-        <Reveal className="intro-content" delay={0.05}>
-          <div className="eyebrow"><span />{t.introKicker}</div>
-          <h2>{t.introTitle}</h2>
-        </Reveal>
-        <Reveal className="intro-body" delay={0.12}>
-          <p>{t.introBody}</p>
-          <Link className="text-link" href={route(locale, "/about")}>{locale === "en" ? "Our story" : "Nuestra historia"}<ArrowRight size={17} /></Link>
-        </Reveal>
+      <DishMarquee locale={locale} />
+
+      <section className="intro-band">
+        <div className="intro-section section shell">
+          <Reveal className="intro-content">
+            <div className="eyebrow"><span />{t.introKicker}</div>
+            <h2>{t.introTitle}</h2>
+          </Reveal>
+          <Reveal className="intro-body" delay={0.08}>
+            <p>{t.introBody}</p>
+            <Link className="text-link" href={route(locale, "/about")}>{locale === "en" ? "Our story" : "Nuestra historia"}<ArrowRight size={17} /></Link>
+          </Reveal>
+        </div>
       </section>
+
+      <TileBand />
 
       <section className="audience-section section">
         <div className="shell">
@@ -176,19 +186,25 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="craft-section section shell">
-        <Reveal className="craft-images">
-          <div className="craft-main-image"><Image src="/images/personal-service.jpg" alt="A chef thoughtfully preparing food" fill sizes="(max-width: 800px) 92vw, 42vw" /></div>
-          <div className="craft-accent"><Image src="/images/food-prep.jpg" alt="Fresh green herbs on a preparation surface" fill sizes="220px" /></div>
-          <div className="craft-stamp"><Sparkles /><span>DOMEX</span><small>Brooklyn · NY</small></div>
-        </Reveal>
-        <Reveal className="craft-copy" delay={0.1}>
-          <div className="eyebrow"><span />{t.craftKicker}</div>
-          <h2>{t.craftTitle}</h2>
-          <p>{t.craftBody}</p>
-          <ul>{t.points.map((point) => <li key={point}><Check />{point}</li>)}</ul>
-          <Link className="button button-dark" href={route(locale, "/catering")}>{locale === "en" ? "See our catering approach" : "Conoce nuestro enfoque"}<ArrowRight size={18} /></Link>
-        </Reveal>
+      <section className="craft-band">
+        <div className="craft-section section shell">
+          <Reveal className="craft-images">
+            <div className="craft-main-image">
+              <SplitDuo src="/images/personal-service.jpg" alt="A chef preparing food in a kitchen" sizes="(max-width: 800px) 92vw, 42vw" />
+            </div>
+            <div className="craft-accent">
+              <SplitDuo src="/images/food-prep.jpg" alt="Ingredients on a preparation surface" sizes="260px" />
+            </div>
+            <div className="craft-stamp"><Sparkles /><span>DOMEX</span><small>Brooklyn · NY</small></div>
+          </Reveal>
+          <Reveal className="craft-copy" delay={0.1}>
+            <div className="eyebrow light"><span />{t.craftKicker}</div>
+            <h2>{t.craftTitle}</h2>
+            <p>{t.craftBody}</p>
+            <ul>{t.points.map((point) => <li key={point}><Check />{point}</li>)}</ul>
+            <Link className="button button-dark" href={route(locale, "/catering")}>{locale === "en" ? "See our catering approach" : "Conoce nuestro enfoque"}<ArrowRight size={18} /></Link>
+          </Reveal>
+        </div>
       </section>
 
       <QuoteBand locale={locale} />
@@ -249,16 +265,20 @@ export function CateringPage({ locale }: { locale: Locale }) {
   return (
     <SiteFrame locale={locale}>
       <PageHero kicker={t.kicker} title={t.title} body={t.body} image="/images/fresh-cuisine.jpg" imageAlt="A carefully set event table" />
-      <section className="section shell planning-section">
-        <Reveal className="planning-heading"><span className="page-index">RD / 02</span><h2>{t.planTitle}</h2><p>{t.planBody}</p></Reveal>
-        <div className="steps-grid">
-          {t.steps.map(([title, body], index) => (
-            <Reveal className="step-card" key={title} delay={index * 0.08}>
-              <span>0{index + 1}</span><h3>{title}</h3><p>{body}</p>
-            </Reveal>
-          ))}
+      <section className="planning-band">
+        <div className="section shell planning-section">
+          <Reveal className="planning-heading"><h2>{t.planTitle}</h2><p>{t.planBody}</p></Reveal>
+          <div className="steps-grid">
+            {t.steps.map(([title, body], index) => (
+              <Reveal className="step-card" key={title} delay={index * 0.06}>
+                <span>0{index + 1}</span><h3>{title}</h3><p>{body}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
+      <DishMarquee locale={locale} />
+      <MenuSection locale={locale} />
       <section className="sector-list section">
         <div className="shell">
           <Reveal><div className="eyebrow light"><span />{locale === "en" ? "Audience-focused catering" : "Catering enfocado"}</div><h2>{t.choose}</h2></Reveal>
@@ -308,9 +328,12 @@ export function SectorPage({ locale, sector }: { locale: Locale; sector: Sector 
           </Reveal>
         </div>
       </section>
-      <section className="section shell detail-section">
-        <Reveal><span className="page-index">RD / {sector === "schools" ? "03" : sector === "government" ? "04" : "05"}</span><h2>{t.prompt}</h2></Reveal>
-        <div className="detail-list">{t.details.map((item, index) => <Reveal key={item} delay={index * 0.06}><span>0{index + 1}</span><p>{item}</p></Reveal>)}</div>
+      <TileBand />
+      <section className="detail-band">
+        <div className="section shell detail-section">
+          <Reveal><h2>{t.prompt}</h2></Reveal>
+          <div className="detail-list">{t.details.map((item, index) => <Reveal key={item} delay={index * 0.05}><span>0{index + 1}</span><p>{item}</p></Reveal>)}</div>
+        </div>
       </section>
       <QuoteBand locale={locale} />
     </SiteFrame>
@@ -326,10 +349,13 @@ export function AboutPage({ locale }: { locale: Locale }) {
   const t = aboutCopy[locale]
   return <SiteFrame locale={locale}>
     <PageHero kicker={t.kicker} title={t.title} body={t.body} image="/images/personal-service.jpg" imageAlt="Chef preparing food in a professional kitchen" />
-    <section className="section shell story-section">
-      <Reveal className="story-copy"><div className="eyebrow"><span />{t.mission}</div><h2>{t.missionTitle}</h2><p>{t.missionBody}</p><div className="mwbe-inline"><BadgeCheck /><span><strong>{globalCopy[locale].mwbe}</strong><small>{globalCopy[locale].brooklyn}</small></span></div></Reveal>
-      <div className="values-list">{t.values.map(([title, body], index) => <Reveal key={title} delay={index * 0.08}><span>0{index + 1}</span><div><h3>{title}</h3><p>{body}</p></div></Reveal>)}</div>
+    <section className="story-band">
+      <div className="section shell story-section">
+        <Reveal className="story-copy"><div className="eyebrow"><span />{t.mission}</div><h2>{t.missionTitle}</h2><p>{t.missionBody}</p><div className="mwbe-inline"><BadgeCheck /><span><strong>{globalCopy[locale].mwbe}</strong><small>{globalCopy[locale].brooklyn}</small></span></div></Reveal>
+        <div className="values-list">{t.values.map(([title, body], index) => <Reveal key={title} delay={index * 0.06}><span>0{index + 1}</span><div><h3>{title}</h3><p>{body}</p></div></Reveal>)}</div>
+      </div>
     </section>
+    <DishMarquee locale={locale} />
     <QuoteBand locale={locale} />
   </SiteFrame>
 }
@@ -352,14 +378,33 @@ export function ContactPage({ locale }: { locale: Locale }) {
         </Reveal>
       </div>
     </section>
-    <section className="section shell call-prep">
-      <Reveal className="call-prep-heading"><span className="page-index">RD / 06</span><h2>{t.ready}</h2><p>{t.readyBody}</p></Reveal>
-      <div className="checklist">{t.checklist.map((item, index) => <Reveal key={item} delay={index * 0.06}><span>{index + 1}</span><p>{item}</p><Check /></Reveal>)}</div>
-      <Reveal className="direct-call"><HeartHandshake /><div><span>{locale === "en" ? "Ready when you are" : "Cuando estés listo"}</span><a href={phoneHref}>{globalCopy[locale].call} · {phoneDisplay}</a></div></Reveal>
+    <TileBand />
+    <section className="callprep-band">
+      <div className="section shell call-prep">
+        <Reveal className="call-prep-heading"><h2>{t.ready}</h2><p>{t.readyBody}</p></Reveal>
+        <div className="checklist">{t.checklist.map((item, index) => <Reveal key={item} delay={index * 0.05}><span>{index + 1}</span><p>{item}</p><Check /></Reveal>)}</div>
+        <Reveal className="direct-call"><HeartHandshake /><div><span>{locale === "en" ? "Ready when you are" : "Cuando estés listo"}</span><a href={phoneHref}>{globalCopy[locale].call} · {phoneDisplay}</a></div></Reveal>
+      </div>
     </section>
   </SiteFrame>
 }
 
 function PageHero({ kicker, title, body, image, imageAlt }: { kicker: string; title: string; body: string; image: string; imageAlt: string }) {
-  return <section className="page-hero"><div className="shell page-hero-grid"><Reveal className="page-hero-copy"><div className="eyebrow light"><span />{kicker}</div><h1>{title}</h1><p>{body}</p></Reveal><Reveal className="page-hero-image" delay={0.1}><Image src={image} alt={imageAlt} fill priority sizes="(max-width: 900px) 92vw, 46vw" /></Reveal></div></section>
+  return (
+    <>
+      <section className="page-hero">
+        <div className="shell page-hero-grid">
+          <Reveal className="page-hero-copy">
+            <div className="eyebrow light"><span />{kicker}</div>
+            <h1>{title}</h1>
+            <p>{body}</p>
+          </Reveal>
+          <Reveal className="page-hero-image" delay={0.1}>
+            <SplitDuo src={image} alt={imageAlt} priority sizes="(max-width: 900px) 92vw, 46vw" />
+          </Reveal>
+        </div>
+      </section>
+      <TileBand />
+    </>
+  )
 }

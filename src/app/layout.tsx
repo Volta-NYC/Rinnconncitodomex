@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import "@fontsource-variable/manrope"
-import "@fontsource/dm-serif-display"
+import "@fontsource-variable/archivo"
+import "@fontsource/anton"
 import "./globals.css"
 
 export const metadata: Metadata = {
