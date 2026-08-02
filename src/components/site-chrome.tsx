@@ -49,11 +49,15 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         </Link>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {navigation[locale].map(([label, path]) => (
-            <Link key={path} href={route(locale, path)}>
-              {label}
-            </Link>
-          ))}
+          {navigation[locale].map(([label, path]) => {
+            const href = route(locale, path)
+            const active = path === "" ? pathname === href : pathname.startsWith(href)
+            return (
+              <Link key={path} href={href} aria-current={active ? "page" : undefined}>
+                {label}
+              </Link>
+            )
+          })}
         </nav>
 
         <div className="header-actions">
@@ -77,13 +81,17 @@ export function SiteHeader({ locale }: { locale: Locale }) {
 
       <div id="mobile-navigation" className={`mobile-nav ${open ? "is-open" : ""}`}>
         <nav aria-label="Mobile navigation">
-          {navigation[locale].map(([label, path], index) => (
-            <Link key={path} href={route(locale, path)}>
-              <span>0{index + 1}</span>
-              {label}
-              <ArrowUpRight aria-hidden="true" />
-            </Link>
-          ))}
+          {navigation[locale].map(([label, path], index) => {
+            const href = route(locale, path)
+            const active = path === "" ? pathname === href : pathname.startsWith(href)
+            return (
+              <Link key={path} href={href} aria-current={active ? "page" : undefined}>
+                <span>0{index + 1}</span>
+                {label}
+                <ArrowUpRight aria-hidden="true" />
+              </Link>
+            )
+          })}
           <a className="mobile-call" href={phoneHref}>
             <Phone aria-hidden="true" /> {c.call} · {phoneDisplay}
           </a>

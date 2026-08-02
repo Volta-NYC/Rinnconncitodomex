@@ -163,8 +163,11 @@ export function HomePage({ locale }: { locale: Locale }) {
                 <Reveal key={item.slug} delay={index * 0.08}>
                   <Link className="audience-card" href={route(locale, `/catering/${item.slug}`)}>
                     <div className="audience-top"><span>{item.number}</span><Icon aria-hidden="true" /></div>
-                    <div><h3>{item.title}</h3><p>{item.body}</p></div>
-                    <span className="round-arrow"><ArrowRight /></span>
+                    <div className="audience-body"><h3>{item.title}</h3><p>{item.body}</p></div>
+                    <span className="audience-cta">
+                      <span className="round-arrow"><ArrowRight /></span>
+                      {g.explore}
+                    </span>
                   </Link>
                 </Reveal>
               )
