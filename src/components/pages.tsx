@@ -16,6 +16,7 @@ import {
 import { MenuSection } from "@/components/menu-section"
 import { Reveal } from "@/components/reveal"
 import { SiteFrame } from "@/components/site-chrome"
+import { SplitDuoScroll } from "@/components/split-duo-scroll"
 import { DishMarquee, SplitDuo, TileBand } from "@/components/visuals"
 import {
   address,
@@ -102,27 +103,27 @@ export function HomePage({ locale }: { locale: Locale }) {
       <section className="hero">
         <div className="hero-glow" />
         <div className="hero-grid shell">
+          {/* The hero is above the fold, so it animates on mount rather than on
+              scroll — no IntersectionObserver in the critical first paint. */}
           <div className="hero-copy">
-            <Reveal>
-              <div className="eyebrow light"><span />{t.eyebrow}</div>
-              <h1>
-                <span>{t.titleTop}</span>
-                <em>{t.titleBottom}</em>
-              </h1>
-              <p>{t.heroCopy}</p>
-              <div className="hero-actions">
-                <Link className="button button-sun" href={route(locale, "/contact")}>
-                  {g.quote}<ArrowRight size={18} />
-                </Link>
-                <Link className="text-link light-link" href={route(locale, "/catering")}>
-                  {t.explore}<ChevronRight size={17} />
-                </Link>
-              </div>
-            </Reveal>
+            <div className="eyebrow light"><span />{t.eyebrow}</div>
+            <h1 className="hero-title">
+              <span className="line"><span>{t.titleTop}</span></span>
+              <span className="line"><em>{t.titleBottom}</em></span>
+            </h1>
+            <p>{t.heroCopy}</p>
+            <div className="hero-actions">
+              <Link className="button button-sun" href={route(locale, "/contact")}>
+                {g.quote}<ArrowRight size={18} />
+              </Link>
+              <Link className="text-link light-link" href={route(locale, "/catering")}>
+                {t.explore}<ChevronRight size={17} />
+              </Link>
+            </div>
           </div>
-          <Reveal className="hero-visual" delay={0.14}>
+          <div className="hero-visual">
             <div className="hero-image-frame">
-              <SplitDuo
+              <SplitDuoScroll
                 src="/images/fresh-cuisine.jpg"
                 alt="A catering table set for service"
                 priority
@@ -136,7 +137,7 @@ export function HomePage({ locale }: { locale: Locale }) {
               <BadgeCheck />
               <div><strong>{g.mwbe}</strong><span>{g.brooklyn}</span></div>
             </div>
-          </Reveal>
+          </div>
         </div>
         <div className="hero-proof shell">
           <span>{t.proof}</span><i /> <span>{t.proofSub}</span>
@@ -264,7 +265,7 @@ export function CateringPage({ locale }: { locale: Locale }) {
   const t = cateringCopy[locale]
   return (
     <SiteFrame locale={locale}>
-      <PageHero kicker={t.kicker} title={t.title} body={t.body} image="/images/fresh-cuisine.jpg" imageAlt="A carefully set event table" />
+      <PageHero kicker={t.kicker} title={t.title} body={t.body} image="/images/fresh-cuisine.jpg" imageAlt="A carefully set event table" variant="bleed" />
       <section className="planning-band">
         <div className="section shell planning-section">
           <Reveal className="planning-heading"><h2>{t.planTitle}</h2><p>{t.planBody}</p></Reveal>
@@ -316,16 +317,16 @@ export function SectorPage({ locale, sector }: { locale: Locale; sector: Sector 
     <SiteFrame locale={locale}>
       <section className="sector-hero">
         <div className="shell sector-hero-grid">
-          <Reveal className="sector-hero-copy">
+          <div className="sector-hero-copy enter">
             <div className="sector-icon"><Icon /></div>
             <div className="eyebrow light"><span />{t.label}</div>
             <h1>{t.title}</h1><p>{t.body}</p>
             <Link className="button button-sun" href={route(locale, "/contact")}>{globalCopy[locale].quote}<ArrowRight /></Link>
-          </Reveal>
-          <Reveal className="sector-summary" delay={0.1}>
+          </div>
+          <div className="sector-summary enter-late">
             <span>{locale === "en" ? "At a glance" : "En resumen"}</span>
             <ul>{t.bullets.map((item) => <li key={item}><Check />{item}</li>)}</ul>
-          </Reveal>
+          </div>
         </div>
       </section>
       <TileBand />
@@ -348,7 +349,7 @@ const aboutCopy = {
 export function AboutPage({ locale }: { locale: Locale }) {
   const t = aboutCopy[locale]
   return <SiteFrame locale={locale}>
-    <PageHero kicker={t.kicker} title={t.title} body={t.body} image="/images/personal-service.jpg" imageAlt="Chef preparing food in a professional kitchen" />
+    <PageHero kicker={t.kicker} title={t.title} body={t.body} image="/images/personal-service.jpg" imageAlt="Chef preparing food in a professional kitchen" variant="story" />
     <section className="story-band">
       <div className="section shell story-section">
         <Reveal className="story-copy"><div className="eyebrow"><span />{t.mission}</div><h2>{t.missionTitle}</h2><p>{t.missionBody}</p><div className="mwbe-inline"><BadgeCheck /><span><strong>{globalCopy[locale].mwbe}</strong><small>{globalCopy[locale].brooklyn}</small></span></div></Reveal>
@@ -370,12 +371,12 @@ export function ContactPage({ locale }: { locale: Locale }) {
   return <SiteFrame locale={locale}>
     <section className="contact-hero">
       <div className="shell contact-grid">
-        <Reveal className="contact-title"><div className="eyebrow light"><span />{t.kicker}</div><h1>{t.title}</h1><p>{t.body}</p></Reveal>
-        <Reveal className="contact-card" delay={0.1}>
+        <div className="contact-title enter"><div className="eyebrow light"><span />{t.kicker}</div><h1>{t.title}</h1><p>{t.body}</p></div>
+        <div className="contact-card enter-late">
           <div className="contact-block"><span className="contact-icon"><Phone /></span><div><small>{t.phone}</small><a href={phoneHref}>{phoneDisplay}</a></div></div>
           <div className="contact-block"><span className="contact-icon"><MapPin /></span><div><small>{t.visit}</small><p>{address}</p><a className="mini-link" href={mapHref} target="_blank" rel="noreferrer">{t.directions}<ArrowRight /></a></div></div>
           <div className="contact-block"><span className="contact-icon"><Clock3 /></span><div><small>{t.hours}</small><p>{t.weekdays}<br /><strong>9:00 AM–5:00 PM</strong></p><p className="closed-hours">{t.closed}<br /><strong>{t.closedValue}</strong></p></div></div>
-        </Reveal>
+        </div>
       </div>
     </section>
     <TileBand />
@@ -389,19 +390,42 @@ export function ContactPage({ locale }: { locale: Locale }) {
   </SiteFrame>
 }
 
-function PageHero({ kicker, title, body, image, imageAlt }: { kicker: string; title: string; body: string; image: string; imageAlt: string }) {
+/**
+ * Page heroes deliberately differ by page so the site doesn't read as one
+ * template with swapped copy:
+ *  - "bleed"  (Catering) — cobalt field, image bleeding off the right edge,
+ *              headline running over it.
+ *  - "story"  (Our Story) — inverted to a light bone field, portrait frame
+ *              on a hard cobalt shadow. The one light page in a dark site.
+ */
+function PageHero({
+  kicker,
+  title,
+  body,
+  image,
+  imageAlt,
+  variant,
+}: {
+  kicker: string
+  title: string
+  body: string
+  image: string
+  imageAlt: string
+  variant: "bleed" | "story"
+}) {
+  const light = variant !== "story"
   return (
     <>
-      <section className="page-hero">
+      <section className={`page-hero page-hero--${variant}`}>
         <div className="shell page-hero-grid">
-          <Reveal className="page-hero-copy">
-            <div className="eyebrow light"><span />{kicker}</div>
+          <div className="page-hero-copy enter">
+            <div className={`eyebrow${light ? " light" : ""}`}><span />{kicker}</div>
             <h1>{title}</h1>
             <p>{body}</p>
-          </Reveal>
-          <Reveal className="page-hero-image" delay={0.1}>
-            <SplitDuo src={image} alt={imageAlt} priority sizes="(max-width: 900px) 92vw, 46vw" />
-          </Reveal>
+          </div>
+          <div className="page-hero-image enter-late">
+            <SplitDuo src={image} alt={imageAlt} priority sizes="(max-width: 900px) 92vw, 50vw" />
+          </div>
         </div>
       </section>
       <TileBand />

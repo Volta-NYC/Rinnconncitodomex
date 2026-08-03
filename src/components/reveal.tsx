@@ -1,8 +1,16 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
-import type { ReactNode } from "react"
+import { motion, useInView, useReducedMotion } from "framer-motion"
+import { useRef, type ReactNode } from "react"
 
+/**
+ * Scroll reveal for below-the-fold content.
+ *
+ * Uses `useInView` + an explicit `animate` target rather than `whileInView`,
+ * which was leaving elements stranded at opacity 0 when they were already on
+ * screen at mount. Anything above the fold should use a CSS mount animation
+ * instead of this component — see the hero in globals.css.
+ */
 export function Reveal({
   children,
   className = "",
@@ -13,14 +21,23 @@ export function Reveal({
   delay?: number
 }) {
   const reduce = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0 })
+
+  if (reduce) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    )
+  }
+
   return (
     <motion.div
+      ref={ref}
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 18 }}
-      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-      // Fire as soon as any sliver enters, with generous bottom margin, so tall
-      // sections are never caught mid-fade and read as blank while scrolling.
-      viewport={{ once: true, amount: 0, margin: "0px 0px -12% 0px" }}
+      initial={{ opacity: 0, y: 18 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
       transition={{ duration: 0.45, delay: Math.min(delay, 0.18), ease: [0.22, 1, 0.36, 1] }}
     >
       {children}

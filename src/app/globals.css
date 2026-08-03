@@ -49,6 +49,14 @@ img { display: block; }
 :focus-visible { outline: 3px solid var(--maiz); outline-offset: 3px; border-radius: 2px; }
 ::selection { color: var(--noche); background: var(--maiz); }
 
+/* Film grain. Kills the flat "flat vector" feel on the big colour fields —
+   the whole page picks up a printed texture. */
+body::after {
+  content: ""; position: fixed; z-index: 9997; inset: 0; pointer-events: none;
+  opacity: .055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 .skip-link {
   position: fixed; z-index: 9999; top: 12px; left: 12px; padding: 12px 20px;
   color: var(--noche); background: var(--maiz); font-weight: 700;
@@ -116,8 +124,10 @@ h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; l
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: var(--duo-dark); mix-blend-mode: screen;
 }
-.duo-mex { clip-path: inset(0 50% 0 0); --duo-light: var(--maiz); --duo-dark: #071049; }
-.duo-dom { clip-path: inset(0 0 0 50%); --duo-light: var(--rosa); --duo-dark: #12002a; }
+/* --split is driven by scroll on the hero (see split-duo-scroll.tsx);
+   everywhere else it stays at the 50% default. */
+.duo-mex { clip-path: inset(0 calc(100% - var(--split, 50%)) 0 0); --duo-light: var(--maiz); --duo-dark: #071049; }
+.duo-dom { clip-path: inset(0 0 0 var(--split, 50%)); --duo-light: var(--rosa); --duo-dark: #12002a; }
 
 .split-duo { position: relative; overflow: hidden; background: var(--noche); }
 /* Frames are the positioned box; the duo fills them edge to edge. */
@@ -126,7 +136,7 @@ h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; l
 .craft-main-image > .split-duo,
 .craft-accent > .split-duo { position: absolute; inset: 0; }
 .split-duo::after {
-  content: ""; position: absolute; z-index: 4; top: 0; bottom: 0; left: 50%;
+  content: ""; position: absolute; z-index: 4; top: 0; bottom: 0; left: var(--split, 50%);
   width: 3px; margin-left: -1.5px; background: var(--hueso);
 }
 
@@ -188,7 +198,21 @@ h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; l
 
 /* ---------- Home hero ---------- */
 .hero { position: relative; overflow: hidden; color: var(--hueso); background: var(--noche); }
-.hero-glow { position: absolute; top: -25%; right: -5%; width: 620px; height: 620px; border-radius: 50%; background: var(--cobalto); opacity: .35; filter: blur(140px); }
+.hero-glow {
+  position: absolute; top: -25%; right: -5%; width: 620px; height: 620px;
+  border-radius: 50%; background: var(--cobalto); opacity: .35; filter: blur(140px);
+  animation: glow-drift 18s ease-in-out infinite alternate;
+}
+@keyframes glow-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); opacity: .3; }
+  to { transform: translate3d(-90px, 60px, 0) scale(1.15); opacity: .45; }
+}
+/* A second, rosa light source so the hero has depth rather than one flat wash. */
+.hero-glow::after {
+  content: ""; position: absolute; left: -60%; top: 55%; width: 420px; height: 420px;
+  border-radius: 50%; background: var(--rosa); opacity: .5; filter: blur(130px);
+  animation: glow-drift 22s ease-in-out infinite alternate-reverse;
+}
 .hero-grid {
   position: relative; z-index: 2; display: grid; grid-template-columns: 1.1fr .9fr;
   align-items: center; gap: clamp(32px, 5vw, 72px); padding-block: clamp(56px, 7vw, 96px);
@@ -197,9 +221,29 @@ h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; l
 .hero-copy h1 span, .hero-copy h1 em { display: block; font-style: normal; }
 .hero-copy h1 span { color: var(--hueso); }
 .hero-copy h1 em { color: var(--rosa); }
+/* Masked line reveal. Padding-top leaves room for Spanish accents (CORAZÓN)
+   so the mask only ever clips the bottom edge the text rises from. */
+.hero-title .line { display: block; overflow: hidden; padding-top: .1em; margin-top: -.1em; }
+.hero-title .line > * { animation: line-rise .95s cubic-bezier(.22, 1, .36, 1) backwards; }
+.hero-title .line:nth-child(1) > * { animation-delay: .12s; }
+.hero-title .line:nth-child(2) > * { animation-delay: .26s; }
+@keyframes line-rise { from { transform: translateY(108%); } to { transform: translateY(0); } }
 .hero-copy > p, .hero-copy p { max-width: 560px; margin-bottom: 38px; color: var(--body-on-dark); font-size: clamp(1rem, 1.2vw, 1.15rem); }
 .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; }
-.hero-visual { position: relative; min-height: 540px; }
+.hero-visual { position: relative; min-height: 540px; animation: frame-in 1.05s cubic-bezier(.22, 1, .36, 1) .18s backwards; }
+
+/* Page-load sequence: eyebrow, the two title lines, body, actions, frame. */
+.hero-copy > .eyebrow { animation: rise-in .75s cubic-bezier(.22, 1, .36, 1) .04s backwards; }
+.hero-copy > p { animation: rise-in .75s cubic-bezier(.22, 1, .36, 1) .42s backwards; }
+.hero-copy > .hero-actions { animation: rise-in .75s cubic-bezier(.22, 1, .36, 1) .54s backwards; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes frame-in { from { opacity: 0; transform: translateY(30px) scale(.97); } to { opacity: 1; transform: none; } }
+
+/* Mount entrance for above-the-fold content. CSS rather than JS so it is
+   compositor-driven and survives a busy main thread or slow hydration —
+   nothing above the fold should wait on an IntersectionObserver. */
+.enter { animation: rise-in .8s cubic-bezier(.22, 1, .36, 1) backwards; }
+.enter-late { animation: frame-in 1.05s cubic-bezier(.22, 1, .36, 1) .16s backwards; }
 .hero-image-frame { position: absolute; inset: 0; overflow: hidden; border: 3px solid var(--hueso); background: var(--noche); }
 .culture-seal {
   position: absolute; z-index: 5; right: -26px; top: -26px; width: 126px; height: 126px;
@@ -323,12 +367,43 @@ h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; l
 .quote-content > p { max-width: 58ch; margin: 0 auto 40px; color: rgba(245, 239, 227, .88); }
 .quote-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; }
 
-/* ---------- Inner page hero ---------- */
-.page-hero { overflow: hidden; color: var(--hueso); background: var(--noche); }
-.page-hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(32px, 5vw, 72px); padding-block: clamp(64px, 8vw, 104px); }
+/* ---------- Inner page heroes (one per page, deliberately unalike) ---------- */
+.page-hero { position: relative; overflow: hidden; color: var(--hueso); background: var(--noche); }
+.page-hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: clamp(32px, 5vw, 72px); padding-block: clamp(64px, 8vw, 104px); }
 .page-hero-copy h1 { max-width: 13ch; margin-bottom: 28px; font-size: clamp(3rem, 7vw, 7rem); }
 .page-hero-copy p { max-width: 54ch; color: var(--body-on-dark); font-size: 1.08rem; line-height: 1.8; }
 .page-hero-image { position: relative; min-height: 540px; overflow: hidden; border: 3px solid var(--hueso); }
+
+/* Catering: cobalt field, image bleeding off the right edge of the screen,
+   headline overlapping it. No frame, no gutter — a poster, not a card. */
+.page-hero--bleed { background: var(--cobalto); }
+.page-hero--bleed .page-hero-grid { grid-template-columns: 1fr; padding-block: clamp(72px, 9vw, 128px); }
+.page-hero--bleed .page-hero-copy { position: relative; z-index: 2; max-width: 62%; }
+.page-hero--bleed .page-hero-copy h1 { max-width: 11ch; text-shadow: 0 6px 40px rgba(10, 15, 44, .45); }
+.page-hero--bleed .page-hero-copy p { color: rgba(245, 239, 227, .86); }
+.page-hero--bleed .page-hero-image {
+  position: absolute; z-index: 1; inset: 0 0 0 auto; width: 52vw; min-height: 0;
+  border: 0; border-left: 3px solid var(--hueso);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 22%);
+  mask-image: linear-gradient(to right, transparent, #000 22%);
+}
+
+/* Our Story: the one light page. Bone field, portrait frame on a hard shadow. */
+.page-hero--story { color: var(--ink-on-light); background: var(--hueso); }
+/* minmax(0,…) so the oversized headline's min-content width can't starve the
+   image column down to nothing. */
+.page-hero--story .page-hero-grid { grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr); align-items: end; }
+.page-hero--story .page-hero-copy h1 { font-size: clamp(2.5rem, 4.6vw, 4.6rem); }
+.page-hero--story .eyebrow { color: var(--cobalto); }
+.page-hero--story .eyebrow > span { background: var(--cobalto); }
+.page-hero--story .page-hero-copy h1 { max-width: 12ch; color: var(--ink-on-light); }
+.page-hero--story .page-hero-copy p { color: var(--body-on-light); }
+/* justify-self, not margin-left:auto — auto margins shrink a grid item to its
+   content width, and the duotone layers inside are absolutely positioned. */
+.page-hero--story .page-hero-image {
+  min-height: 620px; width: 100%; max-width: 460px; justify-self: end;
+  border: 3px solid var(--noche); box-shadow: 18px 18px 0 var(--cobalto);
+}
 
 /* ---------- Catering ---------- */
 .planning-band { color: var(--ink-on-light); background: var(--hueso); }
@@ -375,29 +450,36 @@ h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; l
 .detail-list span { color: var(--rosa); font-family: var(--display); font-size: 1.4rem; }
 .detail-list p { margin: 0; color: var(--ink-on-light); font-family: var(--display); font-size: 1.55rem; text-transform: uppercase; }
 
-/* ---------- About ---------- */
-.story-band { color: var(--ink-on-light); background: var(--hueso); }
-.story-band .eyebrow { color: var(--cobalto); }
+/* ---------- About ----------
+   Inverted rhythm: light hero into a dark body, the reverse of every other
+   page, so Our Story never reads as the Catering template. */
+.story-band { color: var(--hueso); background: var(--noche); }
+.story-band .eyebrow { color: rgba(245, 239, 227, .78); }
+.story-band .eyebrow > span { background: var(--maiz); }
 .story-section { display: grid; grid-template-columns: 1fr .85fr; gap: clamp(36px, 6vw, 88px); }
-.story-copy h2 { margin-bottom: 28px; max-width: 13ch; color: var(--ink-on-light); }
-.story-copy > p { max-width: 58ch; margin-bottom: 34px; color: var(--body-on-light); line-height: 1.8; }
-.mwbe-inline { display: inline-flex; align-items: center; gap: 14px; padding: 16px 22px; color: var(--hueso); background: var(--noche); }
-.mwbe-inline > svg { flex-shrink: 0; color: var(--maiz); }
+.story-copy h2 { margin-bottom: 28px; max-width: 13ch; }
+.story-copy > p { max-width: 58ch; margin-bottom: 34px; color: var(--body-on-dark); line-height: 1.8; }
+.mwbe-inline { display: inline-flex; align-items: center; gap: 14px; padding: 16px 22px; color: var(--noche); background: var(--maiz); }
+.mwbe-inline > svg { flex-shrink: 0; color: var(--cobalto); }
 .mwbe-inline strong, .mwbe-inline small { display: block; }
 .mwbe-inline strong { font-size: .85rem; font-weight: 800; }
-.mwbe-inline small { color: rgba(245, 239, 227, .66); font-size: .7rem; }
-.values-list { border-top: 3px solid var(--ink-on-light); }
-.values-list > div { display: grid; grid-template-columns: 66px 1fr; padding: 30px 0; border-bottom: 3px solid var(--line-light); }
-.values-list > div > span { color: var(--rosa); font-family: var(--display); font-size: 1.4rem; }
-.values-list h3 { margin-bottom: 10px; color: var(--ink-on-light); font-size: 2.1rem; }
-.values-list p { margin: 0; color: var(--body-on-light); font-size: .95rem; }
+.mwbe-inline small { color: rgba(10, 15, 44, .68); font-size: .7rem; }
+.values-list { border-top: 3px solid var(--maiz); }
+.values-list > div { display: grid; grid-template-columns: 66px 1fr; padding: 30px 0; border-bottom: 1px solid var(--line-dark); }
+.values-list > div > span { color: var(--maiz); font-family: var(--display); font-size: 1.4rem; }
+.values-list h3 { margin-bottom: 10px; color: var(--hueso); font-size: 2.1rem; }
+.values-list p { margin: 0; color: var(--body-on-dark); font-size: .95rem; }
 
 /* ---------- Contact ---------- */
-.contact-hero { padding-block: clamp(72px, 9vw, 116px); color: var(--hueso); background: var(--noche); }
+/* Contact is the end of the journey, so it gets the rosa field rather than
+   another indigo one. */
+.contact-hero { padding-block: clamp(72px, 9vw, 116px); color: var(--hueso); background: var(--rosa); }
+.contact-hero .eyebrow.light { color: rgba(245, 239, 227, .85); }
+.contact-hero .eyebrow.light > span { background: var(--noche); }
 .contact-grid { display: grid; grid-template-columns: 1fr .78fr; gap: clamp(36px, 6vw, 88px); align-items: start; }
 .contact-title h1 { max-width: 14ch; margin-bottom: 28px; font-size: clamp(3rem, 6.6vw, 6.8rem); }
-.contact-title > p { max-width: 54ch; color: var(--body-on-dark); font-size: 1.06rem; line-height: 1.8; }
-.contact-card { overflow: hidden; color: var(--ink-on-light); background: var(--hueso); border: 3px solid var(--maiz); box-shadow: 14px 14px 0 var(--cobalto); }
+.contact-title > p { max-width: 54ch; color: rgba(245, 239, 227, .88); font-size: 1.06rem; line-height: 1.8; }
+.contact-card { overflow: hidden; color: var(--ink-on-light); background: var(--hueso); border: 3px solid var(--noche); box-shadow: 14px 14px 0 var(--noche); }
 .contact-block { display: grid; grid-template-columns: 56px 1fr; gap: 18px; padding: 30px; border-bottom: 3px solid var(--line-light); }
 .contact-block:last-child { border-bottom: 0; }
 .contact-icon { display: grid; place-items: center; width: 48px; height: 48px; color: var(--hueso); background: var(--cobalto); }
@@ -450,6 +532,13 @@ h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; l
   .craft-section { grid-template-columns: 1fr; }
   .craft-images { min-height: 560px; }
   .page-hero-grid, .contact-grid, .sector-hero-grid { grid-template-columns: 1fr; }
+  /* The bleed hero can't overlap once the grid stacks. */
+  .page-hero--bleed .page-hero-copy { max-width: none; }
+  .page-hero--bleed .page-hero-image {
+    position: relative; width: auto; min-height: 420px;
+    border: 3px solid var(--hueso); -webkit-mask-image: none; mask-image: none;
+  }
+  .page-hero--story .page-hero-image { max-width: none; margin-left: 0; min-height: 480px; box-shadow: 12px 12px 0 var(--cobalto); }
   .planning-section, .detail-section, .story-section, .call-prep, .intro-section { grid-template-columns: 1fr; }
 }
 
