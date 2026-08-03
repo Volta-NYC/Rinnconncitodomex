@@ -1,15 +1,16 @@
 import type { MetadataRoute } from "next"
+import { business } from "@/content/business"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Rinconcito Domex",
-    short_name: "Domex",
-    description: "Dominican and Mexican catering in Brooklyn, New York.",
+    name: `${business.name} — Catering`,
+    short_name: business.name,
+    description:
+      "Catering dominicano y mexicano en Brooklyn. Dominican and Mexican catering in Brooklyn.",
     start_url: "/",
     display: "standalone",
-    // Must track globals.css --hueso / --noche. These were still the old
-    // forest-green theme, which tints the mobile browser chrome.
-    background_color: "#f5efe3",
-    theme_color: "#0a0f2c",
+    background_color: "#f5ede0",
+    theme_color: "#c0361d",
+    icons: [{ src: "/favicon.svg", sizes: "any", type: "image/svg+xml" }],
   }
 }

@@ -2,141 +2,223 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ArrowUpRight, Globe2, Menu, Phone, X } from "lucide-react"
-import { useEffect, useState } from "react"
-import {
-  globalCopy,
-  navigation,
-  phoneDisplay,
-  phoneHref,
-  route,
-  type Locale,
-} from "@/lib/site"
+import { useEffect, useState, type ReactNode } from "react"
+import { business, route, type Locale } from "@/content/business"
+import { getCopy, otherLocale } from "@/content/copy"
 
-function LanguageLink({ locale }: { locale: Locale }) {
-  const pathname = usePathname()
-  const nextPath =
-    locale === "en"
-      ? `/es${pathname === "/" ? "" : pathname}`
-      : pathname.replace(/^\/es(?=\/|$)/, "") || "/"
-  const c = globalCopy[locale]
+function Arrow({ size = 16 }: { size?: number }) {
   return (
-    <Link className="language-toggle" href={nextPath} hrefLang={locale === "en" ? "es" : "en"}>
-      <Globe2 size={15} aria-hidden="true" />
-      <span>{c.language}</span>
+    <svg
+      className="arrow"
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      aria-hidden="true"
+    >
+      <path d="M2 8h12M9 3l5 5-5 5" strokeLinecap="square" />
+    </svg>
+  )
+}
+
+export { Arrow }
+
+function Wordmark({ locale }: { locale: Locale }) {
+  const copy = getCopy(locale)
+  return (
+    <Link href={route(locale)} className="wordmark" aria-label={business.name}>
+      Rinconcito
+      <span className="wordmark-dots" aria-hidden="true">
+        <i />
+        <i />
+      </span>
+      Domex
+      <small>{copy.brand.tagline}</small>
     </Link>
   )
 }
 
-export function SiteHeader({ locale }: { locale: Locale }) {
-  const [open, setOpen] = useState(false)
+/**
+ * The masthead. Nav links are derived from the copy dictionary so EN and ES
+ * can never drift out of sync, and the language switch preserves the current
+ * page rather than dumping the visitor back on the home page.
+ */
+function Masthead({ locale }: { locale: Locale }) {
+  const copy = getCopy(locale)
   const pathname = usePathname()
-  const c = globalCopy[locale]
+  const [open, setOpen] = useState(false)
 
-  useEffect(() => {
-    document.documentElement.lang = locale
-    setOpen(false)
-  }, [locale, pathname])
+  // A route change should always close the drawer, however it was triggered.
+  useEffect(() => setOpen(false), [pathname])
+
+  const links = [
+    { href: route(locale), label: copy.nav.home },
+    { href: route(locale, "/catering"), label: copy.nav.catering },
+    { href: route(locale, "/about"), label: copy.nav.about },
+    { href: route(locale, "/contact"), label: copy.nav.contact },
+  ]
+
+  const other = otherLocale(locale)
+  const rest = locale === "es" ? pathname.replace(/^\/es/, "") : pathname
+  const switchHref = route(other, rest === "/" ? "" : rest)
+
+  const isCurrent = (href: string) => pathname === href
 
   return (
-    <header className="site-header">
-      <div className="header-inner">
-        <Link className="brand" href={route(locale)} aria-label="Rinconcito Domex home">
-          <span className="brand-mark">RD</span>
-          <span className="brand-name">
-            Rinconcito <strong>Domex</strong>
-          </span>
-        </Link>
+    <header className="masthead">
+      <div className="shell masthead-inner">
+        <Wordmark locale={locale} />
 
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          {navigation[locale].map(([label, path]) => {
-            const href = route(locale, path)
-            const active = path === "" ? pathname === href : pathname.startsWith(href)
-            return (
-              <Link key={path} href={href} aria-current={active ? "page" : undefined}>
-                {label}
-              </Link>
-            )
-          })}
-        </nav>
-
-        <div className="header-actions">
-          <LanguageLink locale={locale} />
-          <Link className="button button-dark header-quote" href={route(locale, "/contact")}>
-            {c.quote}
-            <ArrowUpRight size={16} aria-hidden="true" />
+        <nav className="nav-desktop" aria-label={copy.nav.home}>
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="nav-link"
+              aria-current={isCurrent(link.href) ? "page" : undefined}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link href={switchHref} className="lang-switch" hrefLang={other} lang={other}>
+            {copy.nav.switchLanguage}
           </Link>
-          <button
-            type="button"
-            className="menu-button"
-            onClick={() => setOpen((value) => !value)}
-            aria-expanded={open}
-            aria-controls="mobile-navigation"
-            aria-label={open ? c.close : c.menu}
-          >
-            {open ? <X /> : <Menu />}
-          </button>
-        </div>
-      </div>
-
-      <div id="mobile-navigation" className={`mobile-nav ${open ? "is-open" : ""}`}>
-        <nav aria-label="Mobile navigation">
-          {navigation[locale].map(([label, path], index) => {
-            const href = route(locale, path)
-            const active = path === "" ? pathname === href : pathname.startsWith(href)
-            return (
-              <Link key={path} href={href} aria-current={active ? "page" : undefined}>
-                <span>0{index + 1}</span>
-                {label}
-                <ArrowUpRight aria-hidden="true" />
-              </Link>
-            )
-          })}
-          <a className="mobile-call" href={phoneHref}>
-            <Phone aria-hidden="true" /> {c.call} · {phoneDisplay}
+          <a className="button" href={business.phone.href}>
+            {copy.actions.call}
+            <Arrow />
           </a>
         </nav>
+
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-expanded={open}
+          aria-controls="site-drawer"
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? copy.nav.closeMenu : copy.nav.openMenu}
+        </button>
       </div>
+
+      {open && (
+        <div className="nav-drawer" id="site-drawer">
+          <div className="shell">
+            <ul>
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>
+                    {link.label}
+                    <Arrow />
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href={switchHref} hrefLang={other} lang={other}>
+                  {copy.nav.switchLanguage}
+                  <Arrow />
+                </Link>
+              </li>
+              <li>
+                <a href={business.phone.href}>
+                  {business.phone.display}
+                  <Arrow />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
     </header>
   )
 }
 
-export function SiteFooter({ locale }: { locale: Locale }) {
-  const c = globalCopy[locale]
+function Colophon({ locale }: { locale: Locale }) {
+  const copy = getCopy(locale)
+  const year = new Date().getFullYear()
+
   return (
-    <footer className="site-footer">
-      <div className="footer-top">
-        <div>
-          <span className="brand-mark footer-mark">RD</span>
-          <p>{c.footerLine}</p>
+    <footer className="colophon">
+      <div className="shell">
+        <div className="colophon-grid">
+          <div>
+            <h2>{copy.brand.tableLine}</h2>
+            <p className="colophon-note">
+              {copy.brand.mwbe} · {copy.brand.location}
+            </p>
+          </div>
+
+          <div>
+            <span className="colophon-label">{copy.nav.catering}</span>
+            <ul className="colophon-list">
+              <li>
+                <Link href={route(locale, "/catering")}>{copy.nav.catering}</Link>
+              </li>
+              <li>
+                <Link href={route(locale, "/about")}>{copy.nav.about}</Link>
+              </li>
+              <li>
+                <Link href={route(locale, "/contact")}>{copy.nav.contact}</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <span className="colophon-label">{copy.contact.visitLabel}</span>
+            <ul className="colophon-list">
+              <li>
+                <a href={business.phone.href}>{business.phone.display}</a>
+              </li>
+              <li>{business.address.full}</li>
+              <li>
+                {copy.contact.weekdays} · 9:00–17:00
+              </li>
+              <li>
+                <a href={business.mapHref} target="_blank" rel="noreferrer">
+                  {copy.actions.directions}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className="footer-nav">
-          {navigation[locale].map(([label, path]) => (
-            <Link key={path} href={route(locale, path)}>
-              {label}
-            </Link>
-          ))}
+
+        <div className="colophon-base">
+          <span>
+            © {year} {business.name}. {copy.brand.rights}
+          </span>
+          <span>{copy.brand.tagline}</span>
         </div>
-        <div className="footer-contact">
-          <span>{c.brooklyn}</span>
-          <a href={phoneHref}>{phoneDisplay}</a>
-          <span>{c.hours}</span>
-        </div>
-      </div>
-      <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} Rinconcito Domex. {c.rights}</span>
-        <LanguageLink locale={locale} />
       </div>
     </footer>
   )
 }
 
-export function SiteFrame({ locale, children }: { locale: Locale; children: React.ReactNode }) {
+/**
+ * Page shell. Every route renders through this so the rail, masthead, and
+ * colophon stay identical across both languages.
+ *
+ * `lang` is set here rather than on <html> because a single root layout serves
+ * both locales; putting it on the content wrapper keeps screen readers correct.
+ */
+export function SiteShell({
+  locale,
+  children,
+}: {
+  locale: Locale
+  children: ReactNode
+}) {
+  const copy = getCopy(locale)
   return (
-    <>
-      <SiteHeader locale={locale} />
-      <main id="main-content">{children}</main>
-      <SiteFooter locale={locale} />
-    </>
+    <div lang={locale}>
+      <a className="skip-link" href="#main">
+        {copy.nav.skipToContent}
+      </a>
+      <Masthead locale={locale} />
+      <main id="main" className="rail">
+        {children}
+      </main>
+      <Colophon locale={locale} />
+    </div>
   )
 }
