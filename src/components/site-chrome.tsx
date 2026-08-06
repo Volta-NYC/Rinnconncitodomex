@@ -187,7 +187,17 @@ function Colophon({ locale }: { locale: Locale }) {
           <span>
             © {year} {business.name}. {copy.brand.rights}
           </span>
-          <span>{copy.brand.tagline}</span>
+          <span>
+            Made by{" "}
+            <a
+              className="colophon-credit-link"
+              href="https://www.novusnyc.org/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Novus
+            </a>
+          </span>
         </div>
       </div>
     </footer>

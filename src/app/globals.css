@@ -570,6 +570,10 @@ img {
   font-size: 0.8125rem;
   color: color-mix(in oklab, var(--color-bone) 62%, transparent);
 }
+.colophon-credit-link,
+.colophon-credit-link:hover {
+  color: #F6B78D;
+}
 
 /* ------------------------------------------------------------------ *
  * Hero
