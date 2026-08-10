@@ -91,6 +91,57 @@ img {
   display: block;
 }
 
+.hero-figure,
+.page-figure,
+.craft-main,
+.craft-inset,
+.photo-band-grid img,
+.image-pair img,
+.catering-photos img,
+.contact-photo,
+.gallery-card {
+  transition: box-shadow 0.28s var(--ease-table), transform 0.28s var(--ease-table);
+}
+
+.hero-figure img,
+.page-figure img,
+.craft-main img,
+.craft-inset img,
+.photo-band-grid img,
+.image-pair img,
+.catering-photos img,
+.contact-photo img {
+  border: 6px solid var(--color-bone);
+  box-shadow: 10px 10px 0 var(--color-indigo);
+  transition: box-shadow 0.28s var(--ease-table), transform 0.28s var(--ease-table);
+}
+
+.hero-figure:hover,
+.page-figure:hover,
+.craft-main:hover,
+.craft-inset:hover,
+.contact-photo:hover,
+.gallery-card:hover {
+  transform: translateY(-6px);
+}
+
+.photo-band-grid img:hover,
+.image-pair img:hover,
+.catering-photos img:hover {
+  transform: translateY(-6px);
+}
+
+.hero-figure:hover img,
+.page-figure:hover img,
+.craft-main:hover img,
+.craft-inset:hover img,
+.photo-band-grid img:hover,
+.image-pair img:hover,
+.catering-photos img:hover,
+.contact-photo:hover img {
+  box-shadow: 16px 16px 0 var(--color-indigo);
+}
+
 :focus-visible {
   outline: 3px solid var(--color-achiote);
   outline-offset: 3px;
@@ -1066,6 +1117,7 @@ img {
   );
   box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28),
     inset 0 0 0 1px color-mix(in oklab, var(--color-bone) 24%, transparent);
+  transition: box-shadow 0.28s var(--ease-table), transform 0.28s var(--ease-table);
 }
 .gallery-card img {
   width: 100%;
@@ -1076,6 +1128,10 @@ img {
 }
 .gallery-card:hover img {
   transform: scale(1.04);
+}
+.gallery-card:hover {
+  box-shadow: 14px 14px 0 var(--color-indigo), 0 22px 44px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px color-mix(in oklab, var(--color-bone) 24%, transparent);
 }
 
 /* ------------------------------------------------------------------ *
