@@ -95,6 +95,8 @@ export type Copy = {
     valuesTitle: string
     mwbeTitle: string
     mwbeBody: string
+    credentialsTitle: string
+    credentials: string[]
   }
   contact: {
     eyebrow: string

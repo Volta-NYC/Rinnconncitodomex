@@ -109,6 +109,14 @@ export function AboutPage({ locale }: { locale: Locale }) {
             <div className="mwbe-card">
               <h3>{copy.about.mwbeTitle}</h3>
               <p>{copy.about.mwbeBody}</p>
+              <div className="credential-list">
+                <span className="micro">{copy.about.credentialsTitle}</span>
+                <ul>
+                  {copy.about.credentials.map((credential) => (
+                    <li key={credential}>{credential}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <div className="mwbe-photo-stack" aria-label={photoAlt.food[locale]}>
               {[rinconcitoPhotos[10], rinconcitoPhotos[40]].map((photo) => (
