@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { type Locale } from "@/content/business"
 import { getCopy } from "@/content/copy"
-import { featuredPhotos, images, photoAlt, rinconcitoPhotos } from "@/content/images"
+import { featuredPhotos, images, photoAlt } from "@/content/images"
 import { Reveal } from "@/components/reveal"
 import { PapelEdge, QuoteBand, RailMark, Ribbon } from "@/components/sections"
 import { SiteShell } from "@/components/site-chrome"
@@ -105,30 +105,16 @@ export function AboutPage({ locale }: { locale: Locale }) {
 
       <section className="section-tight">
         <div className="shell story">
-          <Reveal className="mwbe-column">
-            <div className="mwbe-card">
-              <h3>{copy.about.mwbeTitle}</h3>
-              <p>{copy.about.mwbeBody}</p>
-              <div className="credential-list">
-                <span className="micro">{copy.about.credentialsTitle}</span>
-                <ul>
-                  {copy.about.credentials.map((credential) => (
-                    <li key={credential}>{credential}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="mwbe-photo-stack" aria-label={photoAlt.food[locale]}>
-              {[rinconcitoPhotos[10], rinconcitoPhotos[40]].map((photo) => (
-                <Image
-                  key={photo.src}
-                  src={photo.src}
-                  alt={photoAlt.food[locale]}
-                  width={photo.width}
-                  height={photo.height}
-                  sizes="(max-width: 62rem) 44vw, 22vw"
-                />
-              ))}
+          <Reveal className="mwbe-card">
+            <h3>{copy.about.mwbeTitle}</h3>
+            <p>{copy.about.mwbeBody}</p>
+            <div className="credential-list">
+              <span className="micro">{copy.about.credentialsTitle}</span>
+              <ul>
+                {copy.about.credentials.map((credential) => (
+                  <li key={credential}>{credential}</li>
+                ))}
+              </ul>
             </div>
           </Reveal>
           <Reveal delay={0.08}>
