@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { business, type Locale } from "@/content/business"
 import { getCopy } from "@/content/copy"
-import { featuredPhotos, photoAlt } from "@/content/images"
+import { featuredPhotos, photoAlt, rinconcitoPhotos } from "@/content/images"
 import { Reveal } from "@/components/reveal"
 import { PapelEdge, RailMark } from "@/components/sections"
 import { Arrow, SiteShell } from "@/components/site-chrome"
@@ -91,12 +91,26 @@ export function ContactPage({ locale }: { locale: Locale }) {
             </p>
           </Reveal>
 
-          <Reveal as="ul" className="checklist" delay={0.08}>
-            {copy.contact.checklist.map((item) => (
-              <li key={item}>
-                <span>{item}</span>
-              </li>
-            ))}
+          <Reveal className="contact-ready-side" delay={0.08}>
+            <ul className="checklist">
+              {copy.contact.checklist.map((item) => (
+                <li key={item}>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="contact-ready-photos">
+              {[rinconcitoPhotos[27], featuredPhotos.lime].map((photo) => (
+                <Image
+                  key={photo.src}
+                  src={photo.src}
+                  alt={photoAlt.food[locale]}
+                  width={photo.width}
+                  height={photo.height}
+                  sizes="(max-width: 62rem) 44vw, 22vw"
+                />
+              ))}
+            </div>
           </Reveal>
         </div>
       </section>

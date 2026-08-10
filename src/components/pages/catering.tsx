@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { audienceSlugs, business, route, type Locale } from "@/content/business"
 import { getCopy } from "@/content/copy"
-import { featuredPhotos, images, photoAlt } from "@/content/images"
+import { featuredPhotos, images, photoAlt, rinconcitoPhotos } from "@/content/images"
 import { Reveal } from "@/components/reveal"
 import { PapelEdge, QuoteBand, RailMark, Ribbon } from "@/components/sections"
 import { Arrow, SiteShell } from "@/components/site-chrome"
@@ -93,11 +93,20 @@ export function CateringPage({ locale }: { locale: Locale }) {
               {copy.catering.menuBody}
             </p>
           </Reveal>
-          <Reveal className="menu-note-card" delay={0.1}>
-            <p className="lede">{copy.catering.menuNote}</p>
-            <a className="button button-maize" href={business.phone.href}>
-              {copy.actions.call} · {business.phone.display}
-            </a>
+          <Reveal className="menu-note-side" delay={0.1}>
+            <div className="menu-note-card">
+              <p className="lede">{copy.catering.menuNote}</p>
+              <a className="button button-maize" href={business.phone.href}>
+                {copy.actions.call} · {business.phone.display}
+              </a>
+            </div>
+            <Image
+              src={rinconcitoPhotos[16].src}
+              alt={photoAlt.food[locale]}
+              width={rinconcitoPhotos[16].width}
+              height={rinconcitoPhotos[16].height}
+              sizes="(max-width: 60rem) 92vw, 40vw"
+            />
           </Reveal>
         </div>
       </section>

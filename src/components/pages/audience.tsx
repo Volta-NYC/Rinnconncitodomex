@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import {
   audienceSlugs,
@@ -6,6 +7,7 @@ import {
   type Locale,
 } from "@/content/business"
 import { getCopy } from "@/content/copy"
+import { photoAlt, rinconcitoPhotos } from "@/content/images"
 import { Reveal } from "@/components/reveal"
 import { PapelEdge, QuoteBand, RailMark } from "@/components/sections"
 import { Arrow, SiteShell } from "@/components/site-chrome"
@@ -25,6 +27,12 @@ export function AudiencePage({
   const copy = getCopy(locale)
   const audience = copy.audiences[slug]
   const others = audienceSlugs.filter((item) => item !== slug)
+  const photoOffset = audienceSlugs.indexOf(slug) * 3
+  const photos = [
+    rinconcitoPhotos[5 + photoOffset],
+    rinconcitoPhotos[18 + photoOffset],
+    rinconcitoPhotos[34 + photoOffset],
+  ]
 
   return (
     <SiteShell locale={locale}>
@@ -71,6 +79,18 @@ export function AudiencePage({
               <li key={detail}>
                 <span>{detail}</span>
               </li>
+            ))}
+          </Reveal>
+          <Reveal className="audience-photo-strip" delay={0.1}>
+            {photos.map((photo) => (
+              <Image
+                key={photo.src}
+                src={photo.src}
+                alt={photoAlt.food[locale]}
+                width={photo.width}
+                height={photo.height}
+                sizes="(max-width: 62rem) 92vw, 28vw"
+              />
             ))}
           </Reveal>
         </div>
