@@ -2,7 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { audienceSlugs, business, route, type Locale } from "@/content/business"
 import { getCopy } from "@/content/copy"
-import { images } from "@/content/images"
+import { featuredPhotos, images, photoAlt } from "@/content/images"
+import { InfinitePhotoGallery } from "@/components/photo-gallery"
 import { Reveal } from "@/components/reveal"
 import { PapelEdge, QuoteBand, RailMark, Ribbon } from "@/components/sections"
 import { Arrow, SiteShell } from "@/components/site-chrome"
@@ -63,6 +64,42 @@ export function HomePage({ locale }: { locale: Locale }) {
       </div>
 
       <Ribbon locale={locale} />
+
+      <section className="section-tight">
+        <div className="shell photo-band">
+          <Reveal className="photo-band-copy">
+            <span className="eyebrow">{locale === "es" ? "En la mesa" : "On the table"}</span>
+            <h2 className="display-md">
+              {locale === "es"
+                ? "Platos reales, colores vivos y una cocina que se siente cerca."
+                : "Real plates, bright color, and a kitchen that feels close."}
+            </h2>
+          </Reveal>
+          <Reveal className="photo-band-grid" delay={0.08}>
+            <Image
+              src={featuredPhotos.table.src}
+              alt={photoAlt.food[locale]}
+              width={featuredPhotos.table.width}
+              height={featuredPhotos.table.height}
+              sizes="(max-width: 62rem) 92vw, 44vw"
+            />
+            <Image
+              src={featuredPhotos.lime.src}
+              alt={photoAlt.detail[locale]}
+              width={featuredPhotos.lime.width}
+              height={featuredPhotos.lime.height}
+              sizes="(max-width: 62rem) 44vw, 16vw"
+            />
+            <Image
+              src={featuredPhotos.team.src}
+              alt={photoAlt.team[locale]}
+              width={featuredPhotos.team.width}
+              height={featuredPhotos.team.height}
+              sizes="(max-width: 62rem) 44vw, 20vw"
+            />
+          </Reveal>
+        </div>
+      </section>
 
       {/* The three values the client states on their own site, given equal
           weight and their own rules rather than being buried in a paragraph. */}
@@ -198,6 +235,8 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       <PapelEdge color="var(--color-indigo)" flip />
+
+      <InfinitePhotoGallery locale={locale} />
 
       <section className="section-tight">
         <div className="shell call-out">

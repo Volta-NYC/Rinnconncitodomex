@@ -1,5 +1,7 @@
+import Image from "next/image"
 import { business, type Locale } from "@/content/business"
 import { getCopy } from "@/content/copy"
+import { featuredPhotos, photoAlt } from "@/content/images"
 import { Reveal } from "@/components/reveal"
 import { PapelEdge, RailMark } from "@/components/sections"
 import { Arrow, SiteShell } from "@/components/site-chrome"
@@ -60,6 +62,17 @@ export function ContactPage({ locale }: { locale: Locale }) {
               </div>
             </div>
           </div>
+
+          <figure className="contact-photo">
+            <Image
+              src={featuredPhotos.storefront.src}
+              alt={photoAlt.storefront[locale]}
+              width={featuredPhotos.storefront.width}
+              height={featuredPhotos.storefront.height}
+              sizes="(max-width: 62rem) 92vw, 36vw"
+              priority
+            />
+          </figure>
         </div>
       </section>
 

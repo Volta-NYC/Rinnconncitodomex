@@ -911,6 +911,174 @@ img {
 }
 
 /* ------------------------------------------------------------------ *
+ * Rinconcito photo moments
+ * ------------------------------------------------------------------ */
+.photo-band {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: center;
+}
+@media (min-width: 64rem) {
+  .photo-band {
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  }
+}
+.photo-band-copy {
+  display: grid;
+  gap: 1rem;
+}
+.photo-band-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: clamp(0.85rem, 2vw, 1.25rem);
+  align-items: end;
+}
+.photo-band-grid img,
+.image-pair img,
+.catering-photos img,
+.contact-photo img {
+  width: 100%;
+  object-fit: cover;
+}
+.photo-band-grid img:first-child {
+  grid-row: span 2;
+  aspect-ratio: 4 / 5;
+}
+.photo-band-grid img:nth-child(2),
+.photo-band-grid img:nth-child(3) {
+  aspect-ratio: 1;
+}
+.image-pair {
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+}
+@media (min-width: 62rem) {
+  .image-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.image-pair img {
+  aspect-ratio: 4 / 3;
+}
+.catering-photos {
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+}
+@media (min-width: 62rem) {
+  .catering-photos {
+    grid-template-columns: 1.2fr 0.8fr 1fr;
+    align-items: stretch;
+  }
+}
+.catering-photos img {
+  aspect-ratio: 4 / 5;
+}
+.catering-photos img:nth-child(2) {
+  aspect-ratio: 1;
+  align-self: center;
+}
+.contact-photo {
+  margin: 0;
+}
+.contact-photo img {
+  aspect-ratio: 4 / 3;
+}
+@media (min-width: 62rem) {
+  .contact-photo {
+    grid-column: 2;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Infinite gallery
+ * ------------------------------------------------------------------ */
+.gallery-section {
+  background: var(--color-cacao);
+  color: var(--color-bone);
+  padding-block: clamp(4.5rem, 7vw, 7rem);
+  overflow: hidden;
+}
+.gallery-sticky {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.gallery-header {
+  width: var(--shell);
+  margin-inline: auto;
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 0.9rem;
+  margin-bottom: clamp(1.4rem, 3vw, 2.25rem);
+}
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.875rem;
+  margin-bottom: clamp(1.25rem, 3vw, 1.9rem);
+}
+.gallery-control {
+  width: 3rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in oklab, var(--color-ink) 45%, transparent);
+  border: 1.5px solid var(--color-maize);
+  color: var(--color-maize);
+  font: inherit;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s var(--ease-table), color 0.2s var(--ease-table),
+    translate 0.2s var(--ease-table);
+}
+.gallery-control:hover {
+  background: color-mix(in oklab, var(--color-maize) 18%, transparent);
+  color: var(--color-bone);
+  translate: 0 -2px;
+}
+.gallery-track-wrap {
+  overflow: hidden;
+  width: 100%;
+  cursor: ew-resize;
+  padding-block: 0.875rem;
+}
+.gallery-track {
+  display: flex;
+  will-change: transform;
+}
+.gallery-card {
+  flex: 0 0 auto;
+  width: clamp(17.5rem, 32vw, 26.25rem);
+  height: clamp(17.5rem, 32vw, 26.25rem);
+  margin: 0 1.25rem 0 0;
+  padding: 0.625rem;
+  border: 2px solid var(--color-maize);
+  overflow: visible;
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--color-maize) 24%, transparent),
+    color-mix(in oklab, var(--color-achiote) 18%, transparent)
+  );
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px color-mix(in oklab, var(--color-bone) 24%, transparent);
+}
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid color-mix(in oklab, var(--color-bone) 35%, transparent);
+  transition: transform 0.5s var(--ease-table);
+}
+.gallery-card:hover img {
+  transform: scale(1.04);
+}
+
+/* ------------------------------------------------------------------ *
  * Page heroes (inner pages)
  * ------------------------------------------------------------------ */
 .page-hero {

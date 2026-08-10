@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { type Locale } from "@/content/business"
 import { getCopy } from "@/content/copy"
-import { images } from "@/content/images"
+import { featuredPhotos, images, photoAlt } from "@/content/images"
 import { Reveal } from "@/components/reveal"
 import { PapelEdge, QuoteBand, RailMark, Ribbon } from "@/components/sections"
 import { SiteShell } from "@/components/site-chrome"
@@ -33,6 +33,29 @@ export function AboutPage({ locale }: { locale: Locale }) {
 
       <Ribbon locale={locale} />
       <RailMark />
+
+      <section className="section-tight">
+        <div className="shell image-pair">
+          <Reveal>
+            <Image
+              src={featuredPhotos.team.src}
+              alt={photoAlt.team[locale]}
+              width={featuredPhotos.team.width}
+              height={featuredPhotos.team.height}
+              sizes="(max-width: 62rem) 92vw, 46vw"
+            />
+          </Reveal>
+          <Reveal delay={0.08}>
+            <Image
+              src={featuredPhotos.classVisit.src}
+              alt={photoAlt.visit[locale]}
+              width={featuredPhotos.classVisit.width}
+              height={featuredPhotos.classVisit.height}
+              sizes="(max-width: 62rem) 92vw, 46vw"
+            />
+          </Reveal>
+        </div>
+      </section>
 
       <section className="section">
         <div className="shell story">

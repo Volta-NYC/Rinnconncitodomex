@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { audienceSlugs, business, route, type Locale } from "@/content/business"
 import { getCopy } from "@/content/copy"
-import { images } from "@/content/images"
+import { featuredPhotos, images, photoAlt } from "@/content/images"
 import { Reveal } from "@/components/reveal"
 import { PapelEdge, QuoteBand, RailMark, Ribbon } from "@/components/sections"
 import { Arrow, SiteShell } from "@/components/site-chrome"
@@ -58,6 +58,23 @@ export function CateringPage({ locale }: { locale: Locale }) {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="section-tight">
+        <Reveal className="shell catering-photos">
+          {[featuredPhotos.table, featuredPhotos.shrimp, featuredPhotos.tacos].map(
+            (photo, index) => (
+              <Image
+                key={photo.src}
+                src={photo.src}
+                alt={index === 0 ? photoAlt.food[locale] : photoAlt.detail[locale]}
+                width={photo.width}
+                height={photo.height}
+                sizes="(max-width: 62rem) 92vw, 30vw"
+              />
+            ),
+          )}
+        </Reveal>
       </section>
 
       <PapelEdge color="var(--color-cacao)" />
