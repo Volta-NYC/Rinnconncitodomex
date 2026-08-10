@@ -16,7 +16,10 @@ export const viewport: Viewport = { themeColor: "#f5ede0" }
  */
 export default function EsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="es" translate="no" className="notranslate">
+      <head>
+        <meta name="google" content="notranslate" />
+      </head>
       <body>{children}</body>
     </html>
   )
