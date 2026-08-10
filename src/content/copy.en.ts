@@ -15,7 +15,10 @@ export const copyEn: Copy = {
   },
   nav: {
     home: "Home",
+    history: "History",
+    menu: "Menu",
     catering: "Catering",
+    events: "Events",
     about: "Our Story",
     contact: "Contact",
     switchLanguage: "Español",

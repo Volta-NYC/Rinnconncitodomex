@@ -82,7 +82,7 @@ export function CateringPage({ locale }: { locale: Locale }) {
       {/* No menu exists in the source material, and inventing one would
           fabricate the client's product. This module says so plainly and
           turns it into the reason to call. */}
-      <section className="ground-dark section">
+      <section className="ground-dark section" id="menu">
         <div className="shell menu-note">
           <Reveal>
             <span className="eyebrow eyebrow-quiet">{copy.catering.menuTitle}</span>
@@ -114,7 +114,7 @@ export function CateringPage({ locale }: { locale: Locale }) {
       <PapelEdge color="var(--color-cacao)" flip />
       <RailMark />
 
-      <section className="section">
+      <section className="section" id="events">
         <div className="shell">
           <Reveal className="section-head">
             <div>

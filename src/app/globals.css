@@ -736,6 +736,32 @@ img {
   background: var(--color-achiote);
   rotate: 45deg;
 }
+.credential-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1px;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  background: color-mix(in oklab, var(--color-ink) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-ink) 14%, transparent);
+}
+.credential-strip span {
+  min-height: 5.25rem;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  text-align: center;
+  background: var(--color-bone);
+  color: var(--color-indigo);
+  font-size: 0.76rem;
+  line-height: 1.25;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variation-settings: "wght" 700;
+}
+.credential-strip span:first-child {
+  background: var(--color-indigo);
+  color: var(--color-bone);
+}
 
 /* ------------------------------------------------------------------ *
  * The ribbon — the tagline running the width of the page

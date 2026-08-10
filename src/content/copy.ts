@@ -16,7 +16,10 @@ export type Copy = {
   }
   nav: {
     home: string
+    history: string
+    menu: string
     catering: string
+    events: string
     about: string
     contact: string
     /** Label on the button that switches to the *other* language. */

@@ -57,6 +57,12 @@ export function HomePage({ locale }: { locale: Locale }) {
           <i aria-hidden="true" />
           <span>{copy.home.proofDetail}</span>
         </div>
+
+        <div className="shell credential-strip" aria-label={copy.about.credentialsTitle}>
+          {copy.about.credentials.map((credential) => (
+            <span key={credential}>{credential}</span>
+          ))}
+        </div>
       </section>
 
       <div className="shell" style={{ paddingTop: "clamp(2rem, 4vw, 3.5rem)" }}>

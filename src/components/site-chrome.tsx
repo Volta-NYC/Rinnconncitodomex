@@ -54,10 +54,10 @@ function Masthead({ locale }: { locale: Locale }) {
   useEffect(() => setOpen(false), [pathname])
 
   const links = [
-    { href: route(locale), label: copy.nav.home },
+    { href: route(locale, "/about"), label: copy.nav.history },
+    { href: `${route(locale, "/catering")}#menu`, label: copy.nav.menu },
     { href: route(locale, "/catering"), label: copy.nav.catering },
-    { href: route(locale, "/about"), label: copy.nav.about },
-    { href: route(locale, "/contact"), label: copy.nav.contact },
+    { href: `${route(locale, "/catering")}#events`, label: copy.nav.events },
   ]
 
   const other = otherLocale(locale)
