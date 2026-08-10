@@ -50,7 +50,7 @@ export function CateringPage({ locale }: { locale: Locale }) {
             {copy.catering.steps.map((step, index) => (
               <Reveal key={step.title} className="step" delay={index * 0.07}>
                 <span className="step-number" aria-hidden="true">
-                  0{index + 1}
+                  {index + 1}
                 </span>
                 <h3>{step.title}</h3>
                 <p>{step.body}</p>

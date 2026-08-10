@@ -88,7 +88,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
             {copy.home.pillars.map((pillar, index) => (
               <Reveal key={pillar.title} className="chapter" delay={index * 0.07}>
                 <span className="chapter-number" aria-hidden="true">
-                  0{index + 1}
+                  {index + 1}
                 </span>
                 <div>
                   <h3>{pillar.title}</h3>

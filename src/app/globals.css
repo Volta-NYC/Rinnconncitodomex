@@ -793,8 +793,8 @@ img {
 }
 .chapter-number {
   font-family: var(--font-display);
-  /* Tabular figures keep the number column identical across rows — otherwise
-     each .chapter is its own grid and "01" and "02" size differently. */
+  /* Tabular figures keep the number column steady across rows even though each
+     .chapter is its own grid. */
   font-variant-numeric: tabular-nums;
   min-width: 2.5ch;
   font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 40, "wght" 400;
@@ -1237,7 +1237,7 @@ img {
 }
 .detail-list li::before {
   counter-increment: detail;
-  content: counter(detail, decimal-leading-zero);
+  content: counter(detail);
   font-family: var(--font-display);
   font-variation-settings: "opsz" 20, "wght" 400;
   font-size: 0.9375rem;

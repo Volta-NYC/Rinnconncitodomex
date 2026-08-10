@@ -49,17 +49,17 @@ export const copyEs: Copy = {
     chaptersTitle: "Tres pasos hacia una mesa que es tuya",
     chapters: [
       {
-        number: "01",
+        number: "1",
         title: "Cuéntanos la ocasión",
         body: "El evento, la fecha, el lugar y cuántos invitados esperas. Con eso podemos comenzar.",
       },
       {
-        number: "02",
+        number: "2",
         title: "Conversemos",
         body: "Revisamos tus preferencias, tu horario y cualquier consideración alimentaria — una conversación, no un formulario.",
       },
       {
-        number: "03",
+        number: "3",
         title: "Demos forma a la experiencia",
         body: "Construimos una dirección pensada en tus invitados y tu lugar, y la cotizamos. Cada evento es distinto, y cada menú también.",
       },

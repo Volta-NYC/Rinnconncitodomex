@@ -50,17 +50,17 @@ export const copyEn: Copy = {
     chaptersTitle: "Three steps to a table that's yours",
     chapters: [
       {
-        number: "01",
+        number: "1",
         title: "Tell us the occasion",
         body: "The event, the date, the place, and how many guests you expect. That's enough for us to start.",
       },
       {
-        number: "02",
+        number: "2",
         title: "Talk it through",
         body: "We go over your preferences, your schedule, and any dietary needs in the room — a conversation, not a form.",
       },
       {
-        number: "03",
+        number: "3",
         title: "Shape the experience",
         body: "We build a direction around your guests and your venue, then quote it. Every event is different, so every menu is too.",
       },
