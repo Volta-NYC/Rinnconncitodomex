@@ -367,7 +367,11 @@ export function HomePage({ locale }: { locale: Locale }) {
             />
             <Image
               src="/brand/instruments.png"
-              alt=""
+              alt={
+                locale === "es"
+                  ? "Ilustración de instrumentos musicales de la marca Rinconcito Domex"
+                  : "Rinconcito Domex brand illustration of musical instruments"
+              }
               width={1200}
               height={900}
               sizes="(max-width: 62rem) 44vw, 18vw"
