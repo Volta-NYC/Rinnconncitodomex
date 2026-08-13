@@ -20,6 +20,8 @@ export const copyEn: Copy = {
     catering: "Catering",
     events: "Events",
     about: "Our Story",
+    workshops: "Culinary Workshops",
+    social: "Social Media",
     contact: "Contact",
     switchLanguage: "Español",
     openMenu: "Menu",

@@ -21,6 +21,8 @@ export type Copy = {
     catering: string
     events: string
     about: string
+    workshops: string
+    social: string
     contact: string
     /** Label on the button that switches to the *other* language. */
     switchLanguage: string

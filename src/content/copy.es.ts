@@ -19,6 +19,8 @@ export const copyEs: Copy = {
     catering: "Catering",
     events: "Eventos",
     about: "Nuestra historia",
+    workshops: "Talleres culinarios",
+    social: "Redes sociales",
     contact: "Contacto",
     switchLanguage: "English",
     openMenu: "Menú",

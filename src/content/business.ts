@@ -25,6 +25,14 @@ export const business = {
   },
   mapHref:
     "https://www.google.com/maps/search/?api=1&query=505+Dekalb+Avenue+Brooklyn+NY",
+  menuHref: "https://www.rinconcitodomextogo.com/",
+  cateringHref: "https://www.discocater.com/restaurants/rinconcitodomex",
+  social: {
+    instagram: "https://www.instagram.com/rinconcitodomex",
+    tiktok: "https://www.tiktok.com/@rinconcitodomex",
+    facebook: "https://www.facebook.com/RinconcitoDomex",
+    youtube: "https://www.youtube.com/@RinconcitoDomex",
+  },
   /** Mon–Fri 09:00–17:00, closed Sat/Sun — verbatim from the client's hours table. */
   hours: {
     open: { from: "09:00", to: "17:00" },

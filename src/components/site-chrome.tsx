@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState, type ReactNode } from "react"
@@ -26,16 +27,15 @@ function Arrow({ size = 16 }: { size?: number }) {
 export { Arrow }
 
 function Wordmark({ locale }: { locale: Locale }) {
-  const copy = getCopy(locale)
   return (
     <Link href={route(locale)} className="wordmark" aria-label={business.name}>
-      Rinconcito
-      <span className="wordmark-dots" aria-hidden="true">
-        <i />
-        <i />
-      </span>
-      Domex
-      <small>{copy.brand.tagline}</small>
+      <Image
+        src="/brand/rinconcito-logo.png"
+        alt={business.name}
+        width={900}
+        height={305}
+        priority
+      />
     </Link>
   )
 }
@@ -54,17 +54,23 @@ function Masthead({ locale }: { locale: Locale }) {
   useEffect(() => setOpen(false), [pathname])
 
   const links = [
-    { href: route(locale, "/about"), label: copy.nav.history },
-    { href: `${route(locale, "/catering")}#menu`, label: copy.nav.menu },
-    { href: route(locale, "/catering"), label: copy.nav.catering },
-    { href: `${route(locale, "/catering")}#events`, label: copy.nav.events },
+    { href: route(locale), label: copy.nav.home },
+    { href: business.menuHref, label: copy.nav.menu, external: true },
+    { href: business.cateringHref, label: copy.nav.catering, external: true },
+    { href: route(locale, "/about"), label: copy.nav.about },
+    { href: `${route(locale)}#workshops`, label: copy.nav.workshops },
+    { href: `${route(locale)}#social`, label: copy.nav.social },
+    { href: route(locale, "/contact"), label: copy.nav.contact },
   ]
 
   const other = otherLocale(locale)
   const rest = locale === "es" ? pathname.replace(/^\/es/, "") : pathname
   const switchHref = route(other, rest === "/" ? "" : rest)
 
-  const isCurrent = (href: string) => pathname === href
+  const isCurrent = (href: string) => {
+    const cleanHref = href.split("#")[0]
+    return cleanHref === "/" ? pathname === "/" || pathname === "/es" : pathname === cleanHref
+  }
 
   return (
     <header className="masthead">
@@ -72,16 +78,28 @@ function Masthead({ locale }: { locale: Locale }) {
         <Wordmark locale={locale} />
 
         <nav className="nav-desktop" aria-label={copy.nav.home}>
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="nav-link"
-              aria-current={isCurrent(link.href) ? "page" : undefined}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) =>
+            link.external ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="nav-link"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="nav-link"
+                aria-current={isCurrent(link.href) ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            ),
+          )}
           <Link href={switchHref} className="lang-switch" hrefLang={other} lang={other}>
             {copy.nav.switchLanguage}
           </Link>
@@ -108,10 +126,17 @@ function Masthead({ locale }: { locale: Locale }) {
             <ul>
               {links.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>
-                    {link.label}
-                    <Arrow />
-                  </Link>
+                  {link.external ? (
+                    <a href={link.href} target="_blank" rel="noreferrer">
+                      {link.label}
+                      <Arrow />
+                    </a>
+                  ) : (
+                    <Link href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>
+                      {link.label}
+                      <Arrow />
+                    </Link>
+                  )}
                 </li>
               ))}
               <li>
@@ -153,10 +178,18 @@ function Colophon({ locale }: { locale: Locale }) {
             <span className="colophon-label">{copy.nav.catering}</span>
             <ul className="colophon-list">
               <li>
-                <Link href={route(locale, "/catering")}>{copy.nav.catering}</Link>
+                <a href={business.cateringHref} target="_blank" rel="noreferrer">
+                  {copy.nav.catering}
+                </a>
               </li>
               <li>
                 <Link href={route(locale, "/about")}>{copy.nav.about}</Link>
+              </li>
+              <li>
+                <Link href={`${route(locale)}#workshops`}>{copy.nav.workshops}</Link>
+              </li>
+              <li>
+                <Link href={`${route(locale)}#social`}>{copy.nav.social}</Link>
               </li>
               <li>
                 <Link href={route(locale, "/contact")}>{copy.nav.contact}</Link>
