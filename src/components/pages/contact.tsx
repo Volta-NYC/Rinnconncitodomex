@@ -6,12 +6,6 @@ import { Reveal } from "@/components/reveal"
 import { PapelEdge, RailMark } from "@/components/sections"
 import { Arrow, SiteShell } from "@/components/site-chrome"
 
-/**
- * There is no contact form. The business runs on a phone number during
- * weekday hours, so the page's job is to make calling easy and to tell the
- * caller what to have ready — not to collect a lead into an inbox nobody
- * has told us exists.
- */
 export function ContactPage({ locale }: { locale: Locale }) {
   const copy = getCopy(locale)
 
@@ -73,6 +67,47 @@ export function ContactPage({ locale }: { locale: Locale }) {
               priority
             />
           </figure>
+
+          <form
+            className="contact-form"
+            action=""
+            method="post"
+          >
+            <h2 className="display-sm">{copy.contact.formTitle}</h2>
+            <label>
+              <span>{copy.contact.nameLabel}</span>
+              <input name="name" type="text" autoComplete="name" required />
+            </label>
+            <label>
+              <span>{copy.contact.emailLabel}</span>
+              <input name="email" type="email" autoComplete="email" required />
+            </label>
+            <label>
+              <span>{copy.contact.phoneNumberLabel}</span>
+              <input name="phone" type="tel" autoComplete="tel" />
+            </label>
+            <label>
+              <span>{copy.contact.subjectLabel}</span>
+              <select name="subjectCategory" required defaultValue="">
+                <option value="" disabled>
+                  {copy.contact.subjectLabel}
+                </option>
+                {copy.contact.subjectOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="contact-form-message">
+              <span>{copy.contact.messageLabel}</span>
+              <textarea name="message" rows={6} required />
+            </label>
+            <button className="button" type="submit">
+              {copy.contact.submitLabel}
+              <Arrow />
+            </button>
+          </form>
         </div>
       </section>
 

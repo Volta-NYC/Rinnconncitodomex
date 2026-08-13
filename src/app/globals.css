@@ -1645,16 +1645,19 @@ img {
 }
 @media (min-width: 62rem) {
   .contact-grid {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
     grid-template-areas:
       "intro card"
-      "photo card";
+      "photo form";
   }
   .contact-grid > :first-child {
     grid-area: intro;
   }
   .contact-card {
     grid-area: card;
+  }
+  .contact-form {
+    grid-area: form;
   }
 }
 .contact-card {
@@ -1702,6 +1705,59 @@ img {
 }
 .hours-closed {
   color: var(--color-ink-soft);
+}
+
+.contact-form {
+  background: var(--color-bone);
+  color: var(--color-ink);
+  border: 1px solid color-mix(in oklab, var(--color-ink) 16%, transparent);
+  border-top: 5px solid var(--color-achiote);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  display: grid;
+  gap: 1rem;
+  align-self: start;
+  box-shadow: 10px 10px 0 var(--color-indigo);
+}
+.contact-form h2 {
+  margin-bottom: 0.4rem;
+}
+.contact-form label {
+  display: grid;
+  gap: 0.4rem;
+}
+.contact-form label span {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-indigo);
+  font-variation-settings: "wght" 750;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 18%, transparent);
+  background: color-mix(in oklab, var(--color-bone) 78%, white);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 0;
+}
+.contact-form textarea {
+  resize: vertical;
+  min-height: 9rem;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: var(--color-achiote);
+  outline: 2px solid color-mix(in oklab, var(--color-achiote) 28%, transparent);
+  outline-offset: 0;
+}
+.contact-form button {
+  justify-self: start;
+  margin-top: 0.35rem;
 }
 
 .checklist {

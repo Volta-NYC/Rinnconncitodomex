@@ -129,6 +129,14 @@ export type Copy = {
     readyBody: string
     checklist: string[]
     closingTitle: string
+    formTitle: string
+    nameLabel: string
+    emailLabel: string
+    phoneNumberLabel: string
+    subjectLabel: string
+    messageLabel: string
+    submitLabel: string
+    subjectOptions: string[]
   }
   quoteBand: {
     title: string
