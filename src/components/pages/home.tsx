@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { audienceSlugs, business, route, type Locale } from "@/content/business"
 import { getCopy } from "@/content/copy"
-import { featuredPhotos, images, photoAlt } from "@/content/images"
+import { featuredPhotos, images, photoAlt, rinconcitoPhotos } from "@/content/images"
 import { InfinitePhotoGallery } from "@/components/photo-gallery"
 import { Reveal } from "@/components/reveal"
 import { PapelEdge, QuoteBand, RailMark, Ribbon } from "@/components/sections"
@@ -10,6 +10,26 @@ import { Arrow, SiteShell } from "@/components/site-chrome"
 
 export function HomePage({ locale }: { locale: Locale }) {
   const copy = getCopy(locale)
+  const certificationMarks = copy.about.credentials.map((credential) => ({
+    title: credential,
+    mark: credential
+      .replace("NYS & NYC MWBE Certified", "MWBE")
+      .replace("Certificación MWBE del Estado de NY y NYC", "MWBE")
+      .replace("NYC DOE Vendor", "DOE")
+      .replace("Proveedor de NYC DOE", "DOE")
+      .replace("Port Authority of New York & New Jersey Vendor", "PANYNJ")
+      .replace("Proveedor de Port Authority of New York & New Jersey", "PANYNJ")
+      .replace("Member of the Brooklyn Chamber of Commerce", "BCC")
+      .replace("Miembro de Brooklyn Chamber of Commerce", "BCC")
+      .replace("Member of the Women's Chamber of Commerce", "WCC")
+      .replace("Miembro de Women's Chamber of Commerce", "WCC"),
+  }))
+  const socialLinks = [
+    { label: "Instagram", handle: "@rinconcitodomex", href: business.social.instagram },
+    { label: "TikTok", handle: "@rinconcitodomex", href: business.social.tiktok },
+    { label: "Facebook", handle: "Rinconcito Domex", href: business.social.facebook },
+    { label: "YouTube", handle: "RinconcitoDomex", href: business.social.youtube },
+  ]
 
   return (
     <SiteShell locale={locale}>
@@ -59,17 +79,55 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
 
         <div className="shell credential-strip" aria-label={copy.about.credentialsTitle}>
-          {copy.about.credentials.map((credential) => (
-            <span key={credential}>{credential}</span>
+          {certificationMarks.map((credential) => (
+            <span key={credential.title}>
+              <strong>{credential.mark}</strong>
+              {credential.title}
+            </span>
           ))}
         </div>
       </section>
 
-      <div className="shell" style={{ paddingTop: "clamp(2rem, 4vw, 3.5rem)" }}>
-        <RailMark />
-      </div>
+      <section className="section-tight home-video-section">
+        <div className="shell home-video">
+          <Reveal className="home-video-copy">
+            <span className="eyebrow">{copy.home.videoEyebrow}</span>
+            <h2 className="display-md">{copy.home.videoTitle}</h2>
+            <p className="lede">{copy.home.videoBody}</p>
+          </Reveal>
+          <Reveal className="brand-video-frame" delay={0.08}>
+            <video
+              src="/videos/reel-4.mov"
+              controls
+              muted
+              playsInline
+              preload="metadata"
+              aria-label={copy.home.videoTitle}
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      <RailMark />
 
       <Ribbon locale={locale} />
+
+      <section className="section-tight certification-section">
+        <div className="shell certification-block">
+          <Reveal>
+            <span className="eyebrow">{copy.home.certificationsEyebrow}</span>
+            <h2 className="display-md">{copy.home.certificationsTitle}</h2>
+          </Reveal>
+          <Reveal className="certification-grid" delay={0.08}>
+            {certificationMarks.map((credential) => (
+              <article key={credential.title} className="certification-card">
+                <span>{credential.mark}</span>
+                <p>{credential.title}</p>
+              </article>
+            ))}
+          </Reveal>
+        </div>
+      </section>
 
       <section className="section-tight">
         <div className="shell photo-band">
@@ -103,6 +161,40 @@ export function HomePage({ locale }: { locale: Locale }) {
               height={featuredPhotos.team.height}
               sizes="(max-width: 62rem) 44vw, 20vw"
             />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section-tight catering-showcase">
+        <div className="shell">
+          <Reveal className="section-head section-head-split">
+            <div>
+              <span className="eyebrow">{copy.nav.catering}</span>
+              <h2 className="display-md">
+                {locale === "es"
+                  ? "Comida y montaje con presencia para reuniones, escuelas y eventos."
+                  : "Food and service with presence for meetings, schools, and events."}
+              </h2>
+            </div>
+            <p className="lede">
+              {locale === "es"
+                ? "La página muestra el color, la escala y la calidez que Rinconcito Domex puede llevar a cada ocasión."
+                : "The page now shows the color, scale, and warmth Rinconcito Domex can bring to each occasion."}
+            </p>
+          </Reveal>
+          <Reveal className="catering-mosaic" delay={0.08}>
+            {[featuredPhotos.service, rinconcitoPhotos[11], rinconcitoPhotos[28], rinconcitoPhotos[45]].map(
+              (photo, index) => (
+                <Image
+                  key={photo.src}
+                  src={photo.src}
+                  alt={index === 0 ? photoAlt.food[locale] : photoAlt.detail[locale]}
+                  width={photo.width}
+                  height={photo.height}
+                  sizes="(max-width: 62rem) 92vw, 25vw"
+                />
+              ),
+            )}
           </Reveal>
         </div>
       </section>
@@ -241,6 +333,67 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       <PapelEdge color="var(--color-indigo)" flip />
+
+      <section className="section brand-workshops" id="workshops">
+        <div className="shell workshops-grid">
+          <Reveal className="workshops-copy">
+            <span className="eyebrow">{copy.home.workshopsEyebrow}</span>
+            <h2 className="display-md">{copy.home.workshopsTitle}</h2>
+            <p className="lede">{copy.home.workshopsBody}</p>
+            <ul className="craft-points">
+              {copy.home.workshopsPoints.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+            <Link className="button" href={route(locale, "/contact")}>
+              {copy.actions.requestQuote}
+              <Arrow />
+            </Link>
+          </Reveal>
+          <Reveal className="workshops-media" delay={0.08}>
+            <Image
+              src={featuredPhotos.classVisit.src}
+              alt={photoAlt.visit[locale]}
+              width={featuredPhotos.classVisit.width}
+              height={featuredPhotos.classVisit.height}
+              sizes="(max-width: 62rem) 92vw, 40vw"
+            />
+            <Image
+              src={featuredPhotos.team.src}
+              alt={photoAlt.team[locale]}
+              width={featuredPhotos.team.width}
+              height={featuredPhotos.team.height}
+              sizes="(max-width: 62rem) 44vw, 18vw"
+            />
+            <Image
+              src="/brand/instruments.png"
+              alt=""
+              width={1200}
+              height={900}
+              sizes="(max-width: 62rem) 44vw, 18vw"
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section-tight social-section" id="social">
+        <div className="shell social-grid">
+          <Reveal>
+            <span className="eyebrow">{copy.home.socialEyebrow}</span>
+            <h2 className="display-md">{copy.home.socialTitle}</h2>
+            <p className="lede">{copy.home.socialBody}</p>
+          </Reveal>
+          <Reveal className="social-links" delay={0.08}>
+            {socialLinks.map((link) => (
+              <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+                <span>{link.label}</span>
+                <strong>{link.handle}</strong>
+                <Arrow size={14} />
+              </a>
+            ))}
+          </Reveal>
+        </div>
+      </section>
 
       <InfinitePhotoGallery locale={locale} />
 

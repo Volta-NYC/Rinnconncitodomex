@@ -99,6 +99,25 @@ export const copyEn: Copy = {
       "Menus shaped around your guests, not a fixed list",
       "Service that adapts to your venue and schedule",
     ],
+    videoEyebrow: "Rinconcito in motion",
+    videoTitle: "Food, music, color, and the energy behind every table.",
+    videoBody:
+      "Reel 4 brings the brand onto the first page with the movement and personality clients asked for.",
+    certificationsEyebrow: "Certifications",
+    certificationsTitle: "Credentials for corporate, school, and government clients",
+    workshopsEyebrow: "Culinary workshops",
+    workshopsTitle: "Hands-on food experiences for organizations, schools, and groups",
+    workshopsBody:
+      "Rinconcito Domex offers culinary workshops that bring people together around Dominican and Mexican flavor, culture, and participation.",
+    workshopsPoints: [
+      "Workshops for schools, teams, agencies, and community groups",
+      "Visual, hands-on experiences built around food and culture",
+      "Flexible formats for events, learning programs, and collaborations",
+    ],
+    socialEyebrow: "Social media",
+    socialTitle: "Follow the food, the workshops, and the room between events",
+    socialBody:
+      "Connect with Rinconcito Domex across Instagram, TikTok, Facebook, and YouTube.",
   },
   catering: {
     eyebrow: "Catering for New York",

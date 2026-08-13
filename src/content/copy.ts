@@ -66,6 +66,18 @@ export type Copy = {
     craftTitle: string
     craftBody: string
     craftPoints: string[]
+    videoEyebrow: string
+    videoTitle: string
+    videoBody: string
+    certificationsEyebrow: string
+    certificationsTitle: string
+    workshopsEyebrow: string
+    workshopsTitle: string
+    workshopsBody: string
+    workshopsPoints: string[]
+    socialEyebrow: string
+    socialTitle: string
+    socialBody: string
   }
   catering: {
     eyebrow: string
