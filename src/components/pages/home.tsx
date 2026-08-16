@@ -183,15 +183,21 @@ export function HomePage({ locale }: { locale: Locale }) {
             </p>
           </Reveal>
           <Reveal className="catering-mosaic" delay={0.08}>
-            {[featuredPhotos.service, rinconcitoPhotos[11], rinconcitoPhotos[28], rinconcitoPhotos[45]].map(
+            {[featuredPhotos.table, featuredPhotos.classVisit, rinconcitoPhotos[28]].map(
               (photo, index) => (
                 <Image
                   key={photo.src}
                   src={photo.src}
-                  alt={index === 0 ? photoAlt.food[locale] : photoAlt.detail[locale]}
+                  alt={
+                    index === 0
+                      ? photoAlt.food[locale]
+                      : index === 1
+                        ? photoAlt.visit[locale]
+                        : photoAlt.detail[locale]
+                  }
                   width={photo.width}
                   height={photo.height}
-                  sizes="(max-width: 62rem) 92vw, 25vw"
+                  sizes="(max-width: 58rem) 92vw, (max-width: 80rem) 48vw, 62vw"
                 />
               ),
             )}
