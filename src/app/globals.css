@@ -630,17 +630,6 @@ img {
   position: relative;
   overflow: hidden;
 }
-.hero::after {
-  content: "";
-  position: absolute;
-  right: max(-6rem, -9vw);
-  bottom: -5rem;
-  width: clamp(13rem, 24vw, 24rem);
-  aspect-ratio: 1;
-  background: url("/brand/cactus-border.png") center / contain no-repeat;
-  opacity: 0.28;
-  pointer-events: none;
-}
 .hero-grid {
   display: grid;
   gap: clamp(2rem, 4vw, 3.5rem);
