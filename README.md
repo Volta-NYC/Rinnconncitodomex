@@ -71,10 +71,10 @@ give it a route; nothing in the current structure has to move.
 
 ## Media
 
-Six CC0 placeholder photographs in `public/`, catalogued in
-[`docs/image-credits.md`](docs/image-credits.md). The site loads no media from the
-original site or any CDN. Swap the files in place, keeping the filenames, and update the
-dimensions in `src/content/images.ts`.
+The site uses the supplied Rinconcito Domex food, team, storefront, workshop, and brand
+artwork from `public/images/rinconcito/` and `public/brand/`. The homepage hosts Reel 4
+locally; the workshops section lazily embeds the dedicated public workshop video from
+the supplied Drive so visitors can play it without adding a 281 MB file to the site.
 
 ## Verification
 

@@ -1,52 +1,51 @@
 /**
- * Local media only — the site never loads an image from the original site or any CDN.
- * These are CC0 placeholders standing in for real client photography;
- * see `docs/image-credits.md`. Swap the files in place and these entries still hold.
+ * Local client photography from the supplied Rinconcito Domex Drive. Keeping every
+ * image in `public` makes the food-forward experience fast and dependable.
  */
 export const images = {
   hero: {
-    src: "/images/hero-service.jpg",
-    width: 1024,
-    height: 724,
+    src: "/images/rinconcito/53-elrinconcitomix-hero.jpg",
+    width: 1800,
+    height: 1350,
     alt: {
-      en: "Catering staff plating platters for service",
-      es: "Personal de catering emplatando bandejas para el servicio",
+      en: "A colorful spread of Rinconcito Domex Dominican and Mexican dishes",
+      es: "Una colorida mesa de platos dominicanos y mexicanos de Rinconcito Domex",
     },
   },
   kitchen: {
-    src: "/images/kitchen-craft.jpg",
-    width: 960,
-    height: 563,
+    src: "/images/rinconcito/32-dsc08215.jpg",
+    width: 1800,
+    height: 1200,
     alt: {
-      en: "Cooks finishing plates on the pass",
-      es: "Cocineros terminando los platos en el pase",
+      en: "A signature Rinconcito Domex sandwich served with sauce",
+      es: "Un sándwich emblemático de Rinconcito Domex servido con salsa",
     },
   },
   peppers: {
-    src: "/images/prep-peppers.jpg",
-    width: 960,
-    height: 640,
+    src: "/images/rinconcito/23-dsc07918.jpg",
+    width: 1800,
+    height: 1200,
     alt: {
-      en: "Fresh red peppers on a cutting board",
-      es: "Pimientos rojos frescos sobre una tabla de cortar",
+      en: "A Rinconcito Domex burrito with a richly filled center",
+      es: "Un burrito de Rinconcito Domex con un abundante relleno",
     },
   },
   spread: {
-    src: "/images/catering-spread.jpg",
-    width: 1024,
-    height: 683,
+    src: "/images/rinconcito/53-elrinconcitomix-hero.jpg",
+    width: 1800,
+    height: 1350,
     alt: {
-      en: "A platter of tacos served with rice and corn",
-      es: "Una bandeja de tacos servida con arroz y maíz",
+      en: "A full Rinconcito Domex table set with Dominican and Mexican dishes",
+      es: "Una mesa completa de Rinconcito Domex con platos dominicanos y mexicanos",
     },
   },
   chef: {
-    src: "/images/story-chef.jpg",
-    width: 960,
-    height: 640,
+    src: "/images/rinconcito/04-domex-may2026-65.jpg",
+    width: 1800,
+    height: 1200,
     alt: {
-      en: "A chef prepping ingredients in a professional kitchen",
-      es: "Un chef preparando ingredientes en una cocina profesional",
+      en: "The Rinconcito Domex team inside the restaurant",
+      es: "El equipo de Rinconcito Domex dentro del restaurante",
     },
   },
 } as const

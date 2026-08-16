@@ -358,22 +358,25 @@ export function HomePage({ locale }: { locale: Locale }) {
               height={featuredPhotos.classVisit.height}
               sizes="(max-width: 62rem) 92vw, 40vw"
             />
+            <div className="workshop-video-embed">
+              <iframe
+                src="https://drive.google.com/file/d/1dZyI-aBVeDqJd9D3nAQxupmvuxFC3rmc/preview"
+                title={
+                  locale === "es"
+                    ? "Video de los talleres culinarios de Rinconcito Domex"
+                    : "Rinconcito Domex culinary workshops video"
+                }
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              />
+            </div>
             <Image
+              className="workshop-illustration"
               src={featuredPhotos.team.src}
               alt={photoAlt.team[locale]}
               width={featuredPhotos.team.width}
               height={featuredPhotos.team.height}
-              sizes="(max-width: 62rem) 44vw, 18vw"
-            />
-            <Image
-              src="/brand/instruments.png"
-              alt={
-                locale === "es"
-                  ? "Ilustración de instrumentos musicales de la marca Rinconcito Domex"
-                  : "Rinconcito Domex brand illustration of musical instruments"
-              }
-              width={1200}
-              height={900}
               sizes="(max-width: 62rem) 44vw, 18vw"
             />
           </Reveal>

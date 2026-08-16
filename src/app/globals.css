@@ -553,7 +553,7 @@ img {
   font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 40, "wght" 600;
   font-size: 1.35rem;
 }
-@media (min-width: 62rem) {
+@media (min-width: 75rem) {
   .nav-drawer {
     display: none;
   }
@@ -1311,14 +1311,16 @@ img {
   gap: clamp(0.85rem, 2vw, 1.25rem);
   align-items: end;
 }
-.workshops-media img {
+.workshops-media img,
+.workshop-video-embed {
   width: 100%;
   object-fit: cover;
   border: 6px solid var(--color-bone);
   box-shadow: 10px 10px 0 var(--color-indigo);
   transition: box-shadow 0.28s var(--ease-table), transform 0.28s var(--ease-table);
 }
-.workshops-media img:hover {
+.workshops-media img:hover,
+.workshop-video-embed:hover {
   transform: translateY(-6px);
   box-shadow: 16px 16px 0 var(--color-azul);
 }
@@ -1326,13 +1328,18 @@ img {
   grid-row: span 2;
   aspect-ratio: 4 / 5;
 }
-.workshops-media img:nth-child(2) {
+.workshop-video-embed {
   aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--color-indigo);
 }
-.workshops-media img:nth-child(3) {
+.workshop-video-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.workshop-illustration {
   aspect-ratio: 1;
-  object-fit: contain;
-  background: var(--color-bone);
 }
 
 .social-section {
@@ -1953,7 +1960,7 @@ img {
  * Desktop nav switch — declared last so it wins on re-declaration order
  * regardless of where the component rules above sit.
  * ------------------------------------------------------------------ */
-@media (min-width: 62rem) {
+@media (min-width: 75rem) {
   .nav-desktop {
     display: flex;
   }
