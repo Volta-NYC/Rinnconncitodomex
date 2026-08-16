@@ -32,8 +32,8 @@ function Wordmark({ locale }: { locale: Locale }) {
       <Image
         src="/brand/rinconcito-logo.png"
         alt={business.name}
-        width={900}
-        height={305}
+        width={1619}
+        height={971}
         priority
       />
     </Link>
