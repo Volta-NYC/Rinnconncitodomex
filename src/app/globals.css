@@ -414,6 +414,16 @@ img {
   border-color: color-mix(in oklab, var(--color-maize) 82%, var(--color-ink));
   color: var(--color-ink);
 }
+.button-outline {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: color-mix(in oklab, var(--color-ink) 38%, transparent);
+}
+.button-outline:hover {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-bone);
+}
 
 .text-link {
   display: inline-flex;
@@ -743,19 +753,17 @@ img {
   text-transform: uppercase;
   font-variation-settings: "wght" 700;
 }
-.credential-strip strong {
-  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.5rem);
-  line-height: 1;
-  color: var(--color-achiote);
-  letter-spacing: 0;
+.credential-strip img {
+  width: auto;
+  height: 2.5rem;
+  max-width: 7.5rem;
+  object-fit: contain;
 }
 .credential-strip span:first-child {
   background: var(--color-indigo);
   color: var(--color-bone);
 }
-.credential-strip span:first-child strong {
-  color: var(--color-maize);
-}
+.credential-strip span:first-child img { filter: brightness(0) invert(1); }
 
 .home-video-section {
   position: relative;
@@ -837,18 +845,22 @@ img {
   text-align: center;
   font-variation-settings: "wght" 800;
 }
+.certification-card span img {
+  max-width: 3.75rem;
+  max-height: 3.75rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.certification-card:nth-child(2) span img {
+  max-width: 4rem;
+  max-height: 3rem;
+}
 .certification-card:nth-child(2) span {
   background: var(--color-achiote);
 }
 .certification-card:nth-child(3) span {
   background: var(--color-caribe);
-}
-.certification-card:nth-child(4) span {
-  background: var(--color-teal);
-  color: var(--color-ink);
-}
-.certification-card:nth-child(5) span {
-  background: var(--color-rosa);
 }
 .certification-card p {
   font-size: 0.82rem;
@@ -858,6 +870,49 @@ img {
   color: var(--color-indigo);
   font-variation-settings: "wght" 750;
 }
+
+/* ------------------------------------------------------------------ *
+ * Bites, founder, and proof
+ * ------------------------------------------------------------------ */
+.bites-preview {
+  background: var(--color-bone-deep);
+}
+.bites-preview-grid,
+.founder-grid,
+.proof-block {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+@media (min-width: 62rem) {
+  .bites-preview-grid,
+  .founder-grid,
+  .proof-block {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+.bites-preview .lede,
+.founder-grid .lede { margin-block: 1.1rem 1.5rem; }
+.bites-vibes { display: grid; gap: 1px; background: color-mix(in oklab, var(--color-ink) 14%, transparent); }
+.bites-vibes > div { background: var(--color-bone); padding: clamp(1.35rem, 3vw, 2rem); display: grid; gap: 0.65rem; }
+.bites-vibes > div:last-child { background: var(--color-indigo); color: var(--color-bone); }
+.bites-vibes span { font-family: var(--font-display); font-size: clamp(1.25rem, 1rem + 1vw, 1.8rem); font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 40, "wght" 600; }
+.bites-vibes p { font-size: 0.875rem; letter-spacing: 0.04em; line-height: 1.5; }
+.founder-section { background: linear-gradient(90deg, color-mix(in oklab, var(--color-rosa) 12%, transparent), transparent); }
+.founder-photo { max-width: 25rem; }
+.founder-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.proof-section { border-block: 1px solid color-mix(in oklab, var(--color-ink) 13%, transparent); }
+.proof-block .lede { color: var(--color-ink-soft); }
+
+/* Catering focus and package chooser */
+.catering-focus { background: var(--color-bone-deep); }
+.focus-points,
+.package-grid { display: grid; gap: 1px; background: color-mix(in oklab, var(--color-ink) 15%, transparent); border: 1px solid color-mix(in oklab, var(--color-ink) 15%, transparent); }
+.focus-points { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+.focus-points span { background: var(--color-bone); padding: 1rem 1.1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; font-variation-settings: "wght" 700; color: var(--color-indigo); }
+.package-grid { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.package-grid article { background: var(--color-bone); padding: clamp(1.25rem, 3vw, 1.75rem); min-height: 7rem; display: flex; align-items: end; font-family: var(--font-display); font-size: clamp(1.2rem, 1rem + 0.6vw, 1.55rem); font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 40, "wght" 600; }
+.package-actions { margin-top: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
 
 /* ------------------------------------------------------------------ *
  * The ribbon — the tagline running the width of the page

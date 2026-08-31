@@ -18,6 +18,16 @@ export function CateringPage({ locale }: { locale: Locale }) {
             <span className="eyebrow">{copy.catering.eyebrow}</span>
             <h1 className="display-lg">{copy.catering.title}</h1>
             <p className="lede">{copy.catering.body}</p>
+            <div className="hero-actions">
+              <a className="button" href={business.cateringHref} target="_blank" rel="noreferrer">
+                {copy.actions.requestQuote}
+                <Arrow />
+              </a>
+              <Link className="button button-outline" href={route(locale, "/contact")}>
+                {copy.actions.requestVendorInfo}
+                <Arrow />
+              </Link>
+            </div>
           </div>
           <figure className="page-figure">
             <Image
@@ -75,6 +85,49 @@ export function CateringPage({ locale }: { locale: Locale }) {
             ),
           )}
         </Reveal>
+      </section>
+
+      <section className="section catering-focus">
+        <div className="shell">
+          <Reveal className="section-head section-head-split">
+            <div>
+              <span className="eyebrow">{copy.nav.catering}</span>
+              <h2 className="display-md">{copy.catering.focusTitle}</h2>
+            </div>
+            <p className="lede">{copy.catering.focusBody}</p>
+          </Reveal>
+          <Reveal className="focus-points" delay={0.08}>
+            {copy.catering.focusPoints.map((point) => (
+              <span key={point}>{point}</span>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section-tight catering-packages">
+        <div className="shell">
+          <Reveal className="section-head">
+            <div>
+              <span className="eyebrow">{copy.nav.catering}</span>
+              <h2 className="display-md">{copy.catering.packagesTitle}</h2>
+            </div>
+          </Reveal>
+          <Reveal className="package-grid" delay={0.08}>
+            {copy.catering.packages.map((item) => (
+              <article key={item}>{item}</article>
+            ))}
+          </Reveal>
+          <Reveal className="package-actions" delay={0.12}>
+            <a className="button" href={business.cateringHref} target="_blank" rel="noreferrer">
+              {copy.actions.requestQuote}
+              <Arrow />
+            </a>
+            <Link className="text-link" href={route(locale, "/contact")}>
+              {copy.actions.requestCateringMenu}
+              <Arrow />
+            </Link>
+          </Reveal>
+        </div>
       </section>
 
       <PapelEdge color="var(--color-cacao)" />

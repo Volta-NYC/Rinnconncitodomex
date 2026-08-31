@@ -32,6 +32,13 @@ export type Copy = {
   }
   actions: {
     requestQuote: string
+    requestVendorInfo: string
+    requestCateringMenu: string
+    orderOnline: string
+    viewMenu: string
+    orderTakeout: string
+    orderDelivery: string
+    exploreBites: string
     call: string
     explore: string
     directions: string
@@ -78,6 +85,17 @@ export type Copy = {
     socialEyebrow: string
     socialTitle: string
     socialBody: string
+    founderEyebrow: string
+    founderTitle: string
+    founderBody: string
+    bitesEyebrow: string
+    bitesTitle: string
+    bitesBody: string
+    domexVibe: string
+    bitesVibe: string
+    socialProofEyebrow: string
+    socialProofTitle: string
+    socialProofBody: string
   }
   catering: {
     eyebrow: string
@@ -91,6 +109,11 @@ export type Copy = {
     menuBody: string
     menuNote: string
     audiencesTitle: string
+    focusTitle: string
+    focusBody: string
+    focusPoints: string[]
+    packagesTitle: string
+    packages: string[]
   }
   audiences: Record<
     AudienceSlug,

@@ -29,6 +29,13 @@ export const copyEs: Copy = {
   },
   actions: {
     requestQuote: "Solicitar cotización",
+    requestVendorInfo: "Solicitar información de proveedor",
+    requestCateringMenu: "Solicitar menú de catering",
+    orderOnline: "Ordenar en línea",
+    viewMenu: "Ver menú",
+    orderTakeout: "Ordenar para llevar",
+    orderDelivery: "Ordenar con entrega",
+    exploreBites: "Explora Rinconcito Bites",
     call: "Llamar",
     explore: "Explorar",
     directions: "Cómo llegar",
@@ -43,11 +50,11 @@ export const copyEs: Copy = {
     rights: "Todos los derechos reservados.",
   },
   home: {
-    eyebrow: "Catering en todo Nueva York",
-    titleLead: "Catering gourmet para",
-    titleAccent: "todo evento",
+    eyebrow: "Restaurante + catering certificado MWBE",
+    titleLead: "Sabor dominicano y mexicano,",
+    titleAccent: "de nuestra mesa a tu evento",
     intro:
-      "Deliciosa comida y servicio excepcional para tus celebraciones — cocina dominicana y mexicana reunidas en una misma mesa, en Brooklyn y en todo Nueva York.",
+      "Ven a comer, llévalo contigo o lleva Rinconcito Domex a tu próximo evento. Cocina dominicana y mexicana para las mesas de Brooklyn y reuniones en todo Nueva York.",
     proof: "Empresa certificada MWBE",
     proofDetail: "Brooklyn · Servicio en los cinco condados",
     chaptersEyebrow: "Cómo funciona",
@@ -117,6 +124,20 @@ export const copyEs: Copy = {
     socialTitle: "Sigue la comida, los talleres y la energía entre eventos",
     socialBody:
       "Conecta con Rinconcito Domex en Instagram, TikTok, Facebook y YouTube.",
+    founderEyebrow: "Historia de la fundadora",
+    founderTitle: "Una mesa neoyorquina nacida de raíces dominicanas.",
+    founderBody:
+      "Aidmary Ruiz llegó de la República Dominicana a Nueva York y comenzó el negocio en 2019. Rinconcito Domex creció de su creencia de que el sabor dominicano y mexicano, la comida, la familia y la comunidad pertenecen a una misma mesa.",
+    bitesEyebrow: "Una familia. Dos ambientes.",
+    bitesTitle: "¿Buscas más energía? Conócenos en Bites.",
+    bitesBody:
+      "Disfruta sabores dominicanos y mexicanos con cócteles, música y un ambiente social más energético.",
+    domexVibe: "Comida · Familia · Comunidad · Para llevar · Entrega · Catering",
+    bitesVibe: "Comida · Bar completo · Cócteles · Música · Energía social",
+    socialProofEyebrow: "Prueba social",
+    socialProofTitle: "Historias de confianza, compartidas con permiso.",
+    socialProofBody:
+      "Las reseñas de clientes, los testimonios de catering y los logos de clientes se publican solo después de ser verificados y autorizados por las personas y organizaciones que representan.",
   },
   catering: {
     eyebrow: "Catering para Nueva York",
@@ -146,6 +167,26 @@ export const copyEs: Copy = {
     menuNote:
       "Llámanos y conversamos sobre lo que mejor le queda a tu evento.",
     audiencesTitle: "Elige por dónde comenzar",
+    focusTitle: "Catering corporativo y gubernamental listo para cumplir.",
+    focusBody:
+      "Planificación confiable, servicio escalable, menús flexibles y cocina dominicana + mexicana para las organizaciones de las que depende Nueva York.",
+    focusPoints: [
+      "Catering corporativo",
+      "Catering gubernamental",
+      "Escuelas y programas",
+      "Eventos privados",
+      "Empresa certificada MWBE",
+      "Confiable · escalable · menús flexibles",
+    ],
+    packagesTitle: "Paquetes de catering para cada tipo de reunión",
+    packages: [
+      "Catering de desayuno",
+      "Almuerzos de oficina",
+      "Eventos corporativos",
+      "Escuelas y programas",
+      "Gobierno / sector público",
+      "Celebraciones privadas",
+    ],
   },
   audiences: {
     schools: {

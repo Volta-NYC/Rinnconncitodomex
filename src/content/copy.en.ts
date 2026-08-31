@@ -30,6 +30,13 @@ export const copyEn: Copy = {
   },
   actions: {
     requestQuote: "Request a quote",
+    requestVendorInfo: "Request vendor information",
+    requestCateringMenu: "Request catering menu",
+    orderOnline: "Order online",
+    viewMenu: "View menu",
+    orderTakeout: "Order takeout",
+    orderDelivery: "Order delivery",
+    exploreBites: "Explore Rinconcito Bites",
     call: "Call",
     explore: "Explore",
     directions: "Get directions",
@@ -44,11 +51,11 @@ export const copyEn: Copy = {
     rights: "All rights reserved.",
   },
   home: {
-    eyebrow: "Catering across New York",
-    titleLead: "Gourmet catering for",
-    titleAccent: "every event",
+    eyebrow: "Restaurant + MWBE-certified catering",
+    titleLead: "Dominican & Mexican flavor,",
+    titleAccent: "from our table to your event",
     intro:
-      "Delicious food and exceptional service for your celebrations — Dominican and Mexican cooking brought to one table, in Brooklyn and across New York.",
+      "Come in, take it to go, or bring Rinconcito Domex to your next event. Dominican and Mexican cooking for Brooklyn tables and gatherings across New York.",
     proof: "MWBE-certified",
     proofDetail: "Brooklyn · Serving all five boroughs",
     chaptersEyebrow: "How it works",
@@ -118,6 +125,20 @@ export const copyEn: Copy = {
     socialTitle: "Follow the food, the workshops, and the room between events",
     socialBody:
       "Connect with Rinconcito Domex across Instagram, TikTok, Facebook, and YouTube.",
+    founderEyebrow: "Founder story",
+    founderTitle: "A New York table built from a Dominican beginning.",
+    founderBody:
+      "Aidmary Ruiz came from the Dominican Republic to New York and started the business in 2019. Rinconcito Domex grew from her belief that Dominican and Mexican flavor, food, family, and community belong at the same table.",
+    bitesEyebrow: "One family. Two vibes.",
+    bitesTitle: "Looking for more energy? Meet us at Bites.",
+    bitesBody:
+      "Enjoy Dominican and Mexican flavors with cocktails, music, and a more energetic social atmosphere.",
+    domexVibe: "Food · Family · Community · Takeout · Delivery · Catering",
+    bitesVibe: "Food · Full Bar · Cocktails · Music · Social Energy",
+    socialProofEyebrow: "Social proof",
+    socialProofTitle: "Trusted stories, shared with permission.",
+    socialProofBody:
+      "Customer reviews, catering testimonials, and client logos are published only after they have been verified and authorized by the people and organizations they represent.",
   },
   catering: {
     eyebrow: "Catering for New York",
@@ -147,6 +168,26 @@ export const copyEn: Copy = {
     menuNote:
       "Call us and we'll walk you through what suits your event.",
     audiencesTitle: "Choose your starting point",
+    focusTitle: "Corporate and government catering, built to deliver.",
+    focusBody:
+      "Reliable planning, scalable service, flexible menus, and Dominican + Mexican cuisine for the organizations New York depends on.",
+    focusPoints: [
+      "Corporate catering",
+      "Government catering",
+      "Schools & programs",
+      "Private events",
+      "MWBE-certified",
+      "Reliable · scalable · flexible menus",
+    ],
+    packagesTitle: "Catering packages for every kind of gathering",
+    packages: [
+      "Breakfast catering",
+      "Office lunches",
+      "Corporate events",
+      "Schools & programs",
+      "Government / public sector",
+      "Private celebrations",
+    ],
   },
   audiences: {
     schools: {

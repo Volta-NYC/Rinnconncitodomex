@@ -10,20 +10,29 @@ import { Arrow, SiteShell } from "@/components/site-chrome"
 
 export function HomePage({ locale }: { locale: Locale }) {
   const copy = getCopy(locale)
-  const certificationMarks = copy.about.credentials.map((credential) => ({
-    title: credential,
-    mark: credential
-      .replace("NYS & NYC MWBE Certified", "MWBE")
-      .replace("Certificación MWBE del Estado de NY y NYC", "MWBE")
-      .replace("NYC DOE Vendor", "DOE")
-      .replace("Proveedor de NYC DOE", "DOE")
-      .replace("Port Authority of New York & New Jersey Vendor", "PANYNJ")
-      .replace("Proveedor de Port Authority of New York & New Jersey", "PANYNJ")
-      .replace("Member of the Brooklyn Chamber of Commerce", "BCC")
-      .replace("Miembro de Brooklyn Chamber of Commerce", "BCC")
-      .replace("Member of the Women's Chamber of Commerce", "WCC")
-      .replace("Miembro de Women's Chamber of Commerce", "WCC"),
-  }))
+  const certificationMarks = [
+    {
+      title: locale === "es" ? "Certificación MWBE del Estado de NY y NYC" : "NYS & NYC MWBE Certified",
+      src: "/brand/certifications/mwbe.png",
+      width: 240,
+      height: 240,
+    },
+    {
+      title: locale === "es" ? "Proveedor de NYC DOE" : "NYC DOE Vendor",
+      src: "/brand/certifications/nycps.png",
+      width: 412,
+      height: 76,
+    },
+    {
+      title:
+        locale === "es"
+          ? "Proveedor de Port Authority of New York & New Jersey"
+          : "Port Authority of New York & New Jersey Vendor",
+      src: "/brand/certifications/panynj.svg",
+      width: 200,
+      height: 96,
+    },
+  ]
   const socialLinks = [
     { label: "Instagram", handle: "@rinconcitodomex", href: business.social.instagram },
     { label: "TikTok", handle: "@rinconcitodomex", href: business.social.tiktok },
@@ -45,12 +54,12 @@ export function HomePage({ locale }: { locale: Locale }) {
             </h1>
             <p className="lede">{copy.home.intro}</p>
             <div className="hero-actions">
-              <Link className="button" href={route(locale, "/contact")}>
-                {copy.actions.requestQuote}
+              <a className="button" href={business.menuHref} target="_blank" rel="noreferrer">
+                {copy.actions.orderOnline}
                 <Arrow />
-              </Link>
-              <Link className="text-link" href={route(locale, "/catering")}>
-                {copy.actions.seeCatering}
+              </a>
+              <Link className="button button-outline" href={route(locale, "/contact")}>
+                {copy.actions.requestQuote}
                 <Arrow />
               </Link>
             </div>
@@ -81,7 +90,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="shell credential-strip" aria-label={copy.about.credentialsTitle}>
           {certificationMarks.map((credential) => (
             <span key={credential.title}>
-              <strong>{credential.mark}</strong>
+              <Image src={credential.src} alt="" width={credential.width} height={credential.height} />
               {credential.title}
             </span>
           ))}
@@ -121,7 +130,14 @@ export function HomePage({ locale }: { locale: Locale }) {
           <Reveal className="certification-grid" delay={0.08}>
             {certificationMarks.map((credential) => (
               <article key={credential.title} className="certification-card">
-                <span>{credential.mark}</span>
+                <span>
+                  <Image
+                    src={credential.src}
+                    alt={`${credential.title} logo`}
+                    width={credential.width}
+                    height={credential.height}
+                  />
+                </span>
                 <p>{credential.title}</p>
               </article>
             ))}
@@ -161,6 +177,30 @@ export function HomePage({ locale }: { locale: Locale }) {
               height={featuredPhotos.team.height}
               sizes="(max-width: 62rem) 44vw, 20vw"
             />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section bites-preview">
+        <div className="shell bites-preview-grid">
+          <Reveal>
+            <span className="eyebrow">{copy.home.bitesEyebrow}</span>
+            <h2 className="display-md">{copy.home.bitesTitle}</h2>
+            <p className="lede">{copy.home.bitesBody}</p>
+            <Link className="button" href={route(locale, "/bites")}>
+              {copy.actions.exploreBites}
+              <Arrow />
+            </Link>
+          </Reveal>
+          <Reveal className="bites-vibes" delay={0.08}>
+            <div>
+              <span>Rinconcito Domex</span>
+              <p>{copy.home.domexVibe}</p>
+            </div>
+            <div>
+              <span>Rinconcito Bites</span>
+              <p>{copy.home.bitesVibe}</p>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -340,6 +380,29 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <PapelEdge color="var(--color-indigo)" flip />
 
+      <section className="section founder-section">
+        <div className="shell founder-grid">
+          <Reveal className="founder-photo">
+            <Image
+              src={rinconcitoPhotos[0].src}
+              alt={locale === "es" ? "Aidmary Ruiz, fundadora de Rinconcito Domex" : "Aidmary Ruiz, founder of Rinconcito Domex"}
+              width={rinconcitoPhotos[0].width}
+              height={rinconcitoPhotos[0].height}
+              sizes="(max-width: 62rem) 92vw, 30vw"
+            />
+          </Reveal>
+          <Reveal delay={0.08}>
+            <span className="eyebrow">{copy.home.founderEyebrow}</span>
+            <h2 className="display-md">{copy.home.founderTitle}</h2>
+            <p className="lede">{copy.home.founderBody}</p>
+            <Link className="text-link" href={route(locale, "/about")}>
+              {copy.actions.ourStory}
+              <Arrow />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="section brand-workshops" id="workshops">
         <div className="shell workshops-grid">
           <Reveal className="workshops-copy">
@@ -404,6 +467,18 @@ export function HomePage({ locale }: { locale: Locale }) {
                 <Arrow size={14} />
               </a>
             ))}
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section-tight proof-section">
+        <div className="shell proof-block">
+          <Reveal>
+            <span className="eyebrow">{copy.home.socialProofEyebrow}</span>
+            <h2 className="display-sm">{copy.home.socialProofTitle}</h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="lede">{copy.home.socialProofBody}</p>
           </Reveal>
         </div>
       </section>
