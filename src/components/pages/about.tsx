@@ -111,8 +111,14 @@ export function AboutPage({ locale }: { locale: Locale }) {
             <div className="credential-list">
               <span className="micro">{copy.about.credentialsTitle}</span>
               <ul>
-                {copy.about.credentials.map((credential) => (
+                {copy.about.certifications.map((credential) => (
                   <li key={credential}>{credential}</li>
+                ))}
+              </ul>
+              <span className="micro">{copy.about.membershipsTitle}</span>
+              <ul>
+                {copy.about.memberships.map((membership) => (
+                  <li key={membership}>{membership}</li>
                 ))}
               </ul>
             </div>

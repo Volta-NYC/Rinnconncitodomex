@@ -18,6 +18,7 @@ export const copyEn: Copy = {
     history: "History",
     menu: "Menu",
     catering: "Catering",
+    bites: "Rinconcito Bites",
     events: "Events",
     about: "Our Story",
     workshops: "Culinary Workshops",
@@ -273,11 +274,14 @@ export const copyEn: Copy = {
     mwbeTitle: "MWBE-certified",
     mwbeBody:
       "Rinconcito Domex is a certified Minority and Women-owned Business Enterprise, working to become a dependable catering partner for organizations and companies in New York.",
-    credentialsTitle: "Credentials and memberships",
-    credentials: [
+    credentialsTitle: "Verified credentials",
+    certifications: [
       "NYS & NYC MWBE Certified",
       "NYC DOE Vendor",
       "Port Authority of New York & New Jersey Vendor",
+    ],
+    membershipsTitle: "Chamber memberships",
+    memberships: [
       "Member of the Brooklyn Chamber of Commerce",
       "Member of the Women's Chamber of Commerce",
     ],

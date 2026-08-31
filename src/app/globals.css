@@ -914,6 +914,17 @@ img {
 .package-grid article { background: var(--color-bone); padding: clamp(1.25rem, 3vw, 1.75rem); min-height: 7rem; display: flex; align-items: end; font-family: var(--font-display); font-size: clamp(1.2rem, 1rem + 0.6vw, 1.55rem); font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 40, "wght" 600; }
 .package-actions { margin-top: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
 
+/* Rinconcito Bites is a sibling experience, not a location listing. */
+.bites-hero { background: linear-gradient(115deg, color-mix(in oklab, var(--color-rosa) 15%, transparent), transparent 55%), var(--color-bone-deep); }
+.bites-gallery-section { background: var(--color-bone-deep); }
+.bites-photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.6rem, 1.5vw, 1rem); }
+.bites-photo-grid img { width: 100%; height: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.bites-photo-grid img:nth-child(2) { aspect-ratio: 1; }
+.bites-difference { display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+@media (min-width: 62rem) { .bites-difference { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); } }
+.ground-indigo .bites-vibes > div { background: color-mix(in oklab, var(--color-bone) 96%, transparent); color: var(--color-ink); }
+.ground-indigo .bites-vibes > div:last-child { background: var(--color-cacao); color: var(--color-bone); }
+
 /* ------------------------------------------------------------------ *
  * The ribbon — the tagline running the width of the page
  * ------------------------------------------------------------------ */

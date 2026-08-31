@@ -57,6 +57,7 @@ function Masthead({ locale }: { locale: Locale }) {
     { href: route(locale), label: copy.nav.home },
     { href: business.menuHref, label: copy.nav.menu, external: true },
     { href: business.cateringHref, label: copy.nav.catering, external: true },
+    { href: route(locale, "/bites"), label: copy.nav.bites },
     { href: route(locale, "/about"), label: copy.nav.about },
     { href: `${route(locale)}#workshops`, label: copy.nav.workshops },
     { href: `${route(locale)}#social`, label: copy.nav.social },
@@ -184,6 +185,9 @@ function Colophon({ locale }: { locale: Locale }) {
               </li>
               <li>
                 <Link href={route(locale, "/about")}>{copy.nav.about}</Link>
+              </li>
+              <li>
+                <Link href={route(locale, "/bites")}>{copy.nav.bites}</Link>
               </li>
               <li>
                 <Link href={`${route(locale)}#workshops`}>{copy.nav.workshops}</Link>

@@ -19,6 +19,7 @@ export type Copy = {
     history: string
     menu: string
     catering: string
+    bites: string
     events: string
     about: string
     workshops: string
@@ -136,7 +137,9 @@ export type Copy = {
     mwbeTitle: string
     mwbeBody: string
     credentialsTitle: string
-    credentials: string[]
+    certifications: string[]
+    membershipsTitle: string
+    memberships: string[]
   }
   contact: {
     eyebrow: string
