@@ -12,9 +12,9 @@ import puppeteer from "puppeteer-core"
 
 const BASE = process.env.BASE_URL ?? "http://localhost:3100"
 const ROUTES = ["/", "/catering", "/catering/schools", "/catering/agencies",
-  "/catering/corporate", "/catering/celebrations", "/about", "/contact",
+  "/catering/corporate", "/catering/celebrations", "/about", "/bites", "/contact",
   "/es", "/es/catering", "/es/catering/schools", "/es/catering/agencies",
-  "/es/catering/corporate", "/es/catering/celebrations", "/es/about", "/es/contact"]
+  "/es/catering/corporate", "/es/catering/celebrations", "/es/about", "/es/bites", "/es/contact"]
 
 const browser = await puppeteer.launch({
   executablePath: process.env.CHROME ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",

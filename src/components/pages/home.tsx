@@ -90,7 +90,12 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="shell credential-strip" aria-label={copy.about.credentialsTitle}>
           {certificationMarks.map((credential) => (
             <span key={credential.title}>
-              <Image src={credential.src} alt="" width={credential.width} height={credential.height} />
+              <Image
+                src={credential.src}
+                alt={`${credential.title} logo`}
+                width={credential.width}
+                height={credential.height}
+              />
               {credential.title}
             </span>
           ))}
