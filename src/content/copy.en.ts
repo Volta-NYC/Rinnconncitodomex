@@ -248,12 +248,12 @@ export const copyEn: Copy = {
     phoneLabel: "Call us",
     visitLabel: "Visit us",
     hoursLabel: "Hours",
-    weekdays: "Monday – Friday",
-    weekend: "Saturday & Sunday",
+    weekdays: "Monday – Saturday",
+    weekend: "Sunday",
     weekendValue: "Closed",
     readyTitle: "Ready when you call",
     readyBody:
-      "Having these four details to hand makes the first conversation a short one.",
+      "Takeout and delivery are available during regular restaurant hours. Catering is available 24/7 for scheduled orders and events.",
     checklist: [
       "The type of event and the date",
       "Where you're hosting it",

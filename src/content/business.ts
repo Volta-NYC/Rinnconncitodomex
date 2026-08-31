@@ -1,6 +1,6 @@
 /**
  * Every fact in this file comes from the client's own site
- * (`raw messy data/rinconcitodomex.com_.md`). Nothing here is inferred or invented.
+ * (`raw messy data/rinconcitodomex.com_.md`) and the approved website update brief.
  * It is the single source of truth for NAP data, hours, and structured metadata —
  * pages read from here rather than hardcoding a phone number in six places.
  */
@@ -33,10 +33,10 @@ export const business = {
     facebook: "https://www.facebook.com/RinconcitoDomex",
     youtube: "https://www.youtube.com/@RinconcitoDomex",
   },
-  /** Mon–Fri 09:00–17:00, closed Sat/Sun — verbatim from the client's hours table. */
+  /** Restaurant hours — catering is available 24/7 for scheduled orders and events. */
   hours: {
-    open: { from: "09:00", to: "17:00" },
-    weekdays: [1, 2, 3, 4, 5],
+    restaurant: { from: "07:00", to: "18:00" },
+    restaurantDays: [1, 2, 3, 4, 5, 6],
   },
   siteUrl: "https://rinconcitodomex.com",
 } as const
@@ -58,36 +58,43 @@ export function route(locale: Locale, path = ""): string {
   return `${base}${path}` || "/"
 }
 
-/** Schema.org Caterer, generated from the facts above so it can never drift from the page. */
+/**
+ * Schema.org data, generated from the facts above so it can never drift from the
+ * visible restaurant hours. The business serves two distinct roles: restaurant
+ * and caterer.
+ */
 export function localBusinessJsonLd(locale: Locale) {
   return {
     "@context": "https://schema.org",
-    "@type": "Caterer",
-    name: business.name,
-    telephone: business.phone.href.replace("tel:", ""),
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: business.address.street,
-      addressLocality: business.address.city,
-      addressRegion: business.address.region,
-      addressCountry: "US",
-    },
-    servesCuisine: business.cuisines,
-    areaServed: "New York City",
-    url: `${business.siteUrl}${route(locale)}`,
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-        ],
-        opens: business.hours.open.from,
-        closes: business.hours.open.to,
+    "@graph": ["Restaurant", "Caterer"].map((type) => ({
+      "@type": type,
+      name: business.name,
+      telephone: business.phone.href.replace("tel:", ""),
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: business.address.street,
+        addressLocality: business.address.city,
+        addressRegion: business.address.region,
+        addressCountry: "US",
       },
-    ],
+      servesCuisine: business.cuisines,
+      areaServed: "New York City",
+      url: `${business.siteUrl}${route(locale)}`,
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ],
+          opens: business.hours.restaurant.from,
+          closes: business.hours.restaurant.to,
+        },
+      ],
+    })),
   }
 }

@@ -247,12 +247,12 @@ export const copyEs: Copy = {
     phoneLabel: "Llámanos",
     visitLabel: "Visítanos",
     hoursLabel: "Horario",
-    weekdays: "Lunes – viernes",
-    weekend: "Sábado y domingo",
+    weekdays: "Lunes – sábado",
+    weekend: "Domingo",
     weekendValue: "Cerrado",
     readyTitle: "Listos cuando llames",
     readyBody:
-      "Tener estos cuatro datos a la mano hace que la primera conversación sea breve.",
+      "El servicio para llevar y la entrega están disponibles durante el horario regular. El catering está disponible 24/7 para pedidos y eventos programados.",
     checklist: [
       "El tipo de evento y la fecha",
       "Dónde se llevará a cabo",

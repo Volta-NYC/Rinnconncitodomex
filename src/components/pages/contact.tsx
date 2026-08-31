@@ -47,7 +47,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
               <div className="hours-table">
                 <div>
                   <span>{copy.contact.weekdays}</span>
-                  <span>9:00 – 17:00</span>
+                  <span>7:00 AM – 6:00 PM</span>
                 </div>
                 <div className="hours-closed">
                   <span>{copy.contact.weekend}</span>
@@ -159,7 +159,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
             {business.phone.display}
           </a>
           <p className="lede">
-            {copy.contact.weekdays} · 9:00 – 17:00 · {business.address.full}
+            {copy.contact.weekdays} · 7:00 AM – 6:00 PM · {business.address.full}
           </p>
         </div>
       </section>

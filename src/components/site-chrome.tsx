@@ -205,7 +205,7 @@ function Colophon({ locale }: { locale: Locale }) {
               </li>
               <li>{business.address.full}</li>
               <li>
-                {copy.contact.weekdays} · 9:00–17:00
+                {copy.contact.weekdays} · 7:00 AM–6:00 PM
               </li>
               <li>
                 <a href={business.mapHref} target="_blank" rel="noreferrer">
