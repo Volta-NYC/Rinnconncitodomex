@@ -897,6 +897,45 @@ img {
 .founder-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 .proof-section { border-block: 1px solid color-mix(in oklab, var(--color-ink) 13%, transparent); }
 .proof-block .lede { color: var(--color-ink-soft); }
+.testimonial-block {
+  align-items: start;
+}
+.testimonial-grid {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+.testimonial-card {
+  margin: 0;
+  background: var(--color-bone);
+  border: 1px solid color-mix(in oklab, var(--color-indigo) 18%, transparent);
+  border-left: 5px solid var(--color-achiote);
+  padding: clamp(1.1rem, 2.5vw, 1.45rem);
+  display: grid;
+  gap: 1rem;
+  box-shadow: 8px 8px 0 color-mix(in oklab, var(--color-indigo) 88%, transparent);
+}
+.testimonial-card blockquote {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  color: var(--color-ink);
+}
+.testimonial-card figcaption {
+  display: grid;
+  gap: 0.15rem;
+}
+.testimonial-card figcaption strong {
+  color: var(--color-indigo);
+  font-size: 0.9rem;
+}
+.testimonial-card figcaption span {
+  color: var(--color-ink-soft);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variation-settings: "wght" 700;
+}
 
 /* Catering focus and package chooser */
 .catering-focus { background: var(--color-bone-deep); }
@@ -905,7 +944,13 @@ img {
 .focus-points { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
 .focus-points span { background: var(--color-bone); padding: 1rem 1.1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; font-variation-settings: "wght" 700; color: var(--color-indigo); }
 .package-grid { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
-.package-grid article { background: var(--color-bone); padding: clamp(1.25rem, 3vw, 1.75rem); min-height: 7rem; display: flex; align-items: end; font-family: var(--font-display); font-size: clamp(1.2rem, 1rem + 0.6vw, 1.55rem); font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 40, "wght" 600; }
+.package-grid article { background: var(--color-bone); padding: clamp(1.25rem, 3vw, 1.75rem); min-height: 8.25rem; display: flex; align-items: end; font-family: var(--font-display); font-size: clamp(1.2rem, 1rem + 0.6vw, 1.55rem); font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 40, "wght" 600; border-top: 4px solid transparent; }
+.package-grid article:nth-child(1),
+.package-grid article:nth-child(2) {
+  background: var(--color-indigo);
+  color: var(--color-bone);
+  border-top-color: var(--color-maize);
+}
 .package-actions { margin-top: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
 
 /* Rinconcito Bites is a sibling experience, not a location listing. */

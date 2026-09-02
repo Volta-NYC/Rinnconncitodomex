@@ -97,6 +97,11 @@ export type Copy = {
     socialProofEyebrow: string
     socialProofTitle: string
     socialProofBody: string
+    testimonials: {
+      quote: string
+      author: string
+      context: string
+    }[]
   }
   catering: {
     eyebrow: string

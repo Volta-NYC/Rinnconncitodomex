@@ -138,7 +138,27 @@ export const copyEs: Copy = {
     socialProofEyebrow: "Prueba social",
     socialProofTitle: "Historias de confianza, compartidas con permiso.",
     socialProofBody:
-      "Las reseñas de clientes, los testimonios de catering y los logos de clientes se publican solo después de ser verificados y autorizados por las personas y organizaciones que representan.",
+      "Las reseñas de Google destacan entregas de catering confiables, comida sabrosa, servicio amable y una experiencia de restaurante llena de color.",
+    testimonials: [
+      {
+        quote:
+          "Un pedido grande de desayuno para catering llegó a Midtown antes de la hora, caliente, montado y listo con salsas y mantel festivo.",
+        author: "Catherine Cruz",
+        context: "Reseña de Google vía Trustindex",
+      },
+      {
+        quote:
+          "Los clientes resaltan el espacio hermoso, los colores cálidos, el sazón balanceado, el menú amplio y un equipo siempre amable.",
+        author: "Tatiana Diaz",
+        context: "Reseña de Google vía Trustindex",
+      },
+      {
+        quote:
+          "Las visitas mencionan comida fresca, personal atento, salsa picante destacada y opciones consideradas para necesidades sin lácteos.",
+        author: "Austin Floyd e Indira M",
+        context: "Reseñas de Google vía Trustindex",
+      },
+    ],
   },
   catering: {
     eyebrow: "Catering para Nueva York",

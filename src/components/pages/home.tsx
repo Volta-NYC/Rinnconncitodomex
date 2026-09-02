@@ -226,6 +226,16 @@ export function HomePage({ locale }: { locale: Locale }) {
                 ? "La página muestra el color, la escala y la calidez que Rinconcito Domex puede llevar a cada ocasión."
                 : "The page now shows the color, scale, and warmth Rinconcito Domex can bring to each occasion."}
             </p>
+            <div className="package-actions">
+              <a className="button" href={business.cateringHref} target="_blank" rel="noreferrer">
+                {copy.actions.requestQuote}
+                <Arrow />
+              </a>
+              <Link className="button button-outline" href={route(locale, "/contact")}>
+                {copy.actions.requestCateringMenu}
+                <Arrow />
+              </Link>
+            </div>
           </Reveal>
           <Reveal className="catering-mosaic" delay={0.08}>
             {[featuredPhotos.table, featuredPhotos.classVisit, rinconcitoPhotos[28]].map(
@@ -477,13 +487,24 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       <section className="section-tight proof-section">
-        <div className="shell proof-block">
+        <div className="shell proof-block testimonial-block">
           <Reveal>
             <span className="eyebrow">{copy.home.socialProofEyebrow}</span>
             <h2 className="display-sm">{copy.home.socialProofTitle}</h2>
           </Reveal>
           <Reveal delay={0.08}>
             <p className="lede">{copy.home.socialProofBody}</p>
+            <div className="testimonial-grid">
+              {copy.home.testimonials.map((testimonial) => (
+                <figure key={testimonial.author} className="testimonial-card">
+                  <blockquote>{testimonial.quote}</blockquote>
+                  <figcaption>
+                    <strong>{testimonial.author}</strong>
+                    <span>{testimonial.context}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </Reveal>
         </div>
       </section>
