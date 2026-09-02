@@ -136,27 +136,33 @@ export const copyEs: Copy = {
     domexVibe: "Comida · Familia · Comunidad · Para llevar · Entrega · Catering",
     bitesVibe: "Comida · Bar completo · Cócteles · Música · Energía social",
     socialProofEyebrow: "Prueba social",
-    socialProofTitle: "Historias de confianza, compartidas con permiso.",
+    socialProofTitle: "A los clientes les encanta el sabor, el cuidado y la confianza.",
     socialProofBody:
-      "Las reseñas de Google destacan entregas de catering confiables, comida sabrosa, servicio amable y una experiencia de restaurante llena de color.",
+      "Los clientes siempre destacan nuestro catering confiable, la comida llena de sabor, el servicio amable y una experiencia de restaurante llena de color.",
     testimonials: [
       {
         quote:
           "Un pedido grande de desayuno para catering llegó a Midtown antes de la hora, caliente, montado y listo con salsas y mantel festivo.",
         author: "Catherine Cruz",
-        context: "Reseña de Google vía Trustindex",
+        context: "Cliente de catering",
       },
       {
         quote:
           "Los clientes resaltan el espacio hermoso, los colores cálidos, el sazón balanceado, el menú amplio y un equipo siempre amable.",
         author: "Tatiana Diaz",
-        context: "Reseña de Google vía Trustindex",
+        context: "Reseña de cliente",
       },
       {
         quote:
           "Las visitas mencionan comida fresca, personal atento, salsa picante destacada y opciones consideradas para necesidades sin lácteos.",
         author: "Austin Floyd e Indira M",
-        context: "Reseñas de Google vía Trustindex",
+        context: "Reseñas de clientes",
+      },
+      {
+        quote:
+          "Los clientes recomiendan el restaurante por la comida rica, la buena atención y un ambiente tranquilo y acogedor.",
+        author: "Yuri Badillo",
+        context: "Reseña de cliente",
       },
     ],
   },

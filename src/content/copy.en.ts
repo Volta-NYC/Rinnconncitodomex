@@ -137,27 +137,33 @@ export const copyEn: Copy = {
     domexVibe: "Food · Family · Community · Takeout · Delivery · Catering",
     bitesVibe: "Food · Full Bar · Cocktails · Music · Social Energy",
     socialProofEyebrow: "Social proof",
-    socialProofTitle: "Trusted stories, shared with permission.",
+    socialProofTitle: "Customers love the flavor, care, and reliability.",
     socialProofBody:
-      "Google reviewers highlight reliable catering delivery, flavorful food, friendly service, and a colorful restaurant experience.",
+      "Customers consistently praise our reliable catering, flavorful food, friendly service, and colorful restaurant experience.",
     testimonials: [
       {
         quote:
           "A large breakfast catering order arrived in Midtown ahead of schedule, hot, fully set up, and ready with sauces and a festive table cover.",
         author: "Catherine Cruz",
-        context: "Google review via Trustindex",
+        context: "Catering customer",
       },
       {
         quote:
           "Guests call out the beautiful space, warm colors, balanced seasoning, generous menu, and consistently polite team.",
         author: "Tatiana Diaz",
-        context: "Google review via Trustindex",
+        context: "Customer review",
       },
       {
         quote:
           "Visitors mention fresh food, friendly staff, standout hot sauce, and thoughtful accommodation for dairy-free needs.",
         author: "Austin Floyd and Indira M",
-        context: "Google reviews via Trustindex",
+        context: "Customer reviews",
+      },
+      {
+        quote:
+          "Guests recommend the restaurant for rich food, attentive service, and a calm, welcoming atmosphere.",
+        author: "Yuri Badillo",
+        context: "Customer review",
       },
     ],
   },

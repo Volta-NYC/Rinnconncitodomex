@@ -898,11 +898,18 @@ img {
 .proof-section { border-block: 1px solid color-mix(in oklab, var(--color-ink) 13%, transparent); }
 .proof-block .lede { color: var(--color-ink-soft); }
 .testimonial-block {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 3vw, 2rem);
   align-items: start;
+}
+.testimonial-block .display-sm {
+  max-width: 18ch;
 }
 .testimonial-grid {
   display: grid;
-  gap: 0.9rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.25rem);
   margin-top: 1.5rem;
 }
 .testimonial-card {
@@ -913,6 +920,8 @@ img {
   padding: clamp(1.1rem, 2.5vw, 1.45rem);
   display: grid;
   gap: 1rem;
+  align-content: space-between;
+  min-height: 12.5rem;
   box-shadow: 8px 8px 0 color-mix(in oklab, var(--color-indigo) 88%, transparent);
 }
 .testimonial-card blockquote {
@@ -935,6 +944,11 @@ img {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-variation-settings: "wght" 700;
+}
+@media (max-width: 48rem) {
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Catering focus and package chooser */
